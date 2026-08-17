@@ -2,9 +2,9 @@
 import Base from '../layouts/Base.astro';
 import NumeroGigante from '../components/NumeroGigante.astro';
 
-// Los enlaces reales del podcast van aquí. Están marcados para que sea
-// evidente qué falta por completar.
-const SPOTIFY = 'https://open.spotify.com/';   // ← pega aquí el enlace del podcast
+// El primer capítulo de la temporada 1: es por donde debe empezar alguien que
+// llega nuevo, no por el último.
+const SPOTIFY = 'https://open.spotify.com/episode/3HUspxeHwX3oy6X4n4ATYM';
 const INSTAGRAM = 'https://instagram.com/yomevoyconel30';
 ---
 <Base
@@ -49,6 +49,11 @@ const INSTAGRAM = 'https://instagram.com/yomevoyconel30';
         lo que hay del otro lado.
       </p>
 
+      <p class="empezar">
+        Si nunca lo has escuchado, empieza por el principio: el primer capítulo
+        de la primera temporada es donde arranca todo.
+      </p>
+
       <h2>Los datos del podcast</h2>
       <dl class="datos">
         <div><dt>Temporadas</dt><dd>2</dd></div>
@@ -66,7 +71,7 @@ const INSTAGRAM = 'https://instagram.com/yomevoyconel30';
       </blockquote>
 
       <div class="botones">
-        <a class="boton" href={SPOTIFY} rel="noopener">Escuchar en Spotify</a>
+        <a class="boton" href={SPOTIFY} rel="noopener">Empezar por el capítulo 1 →</a>
         <a class="boton secundario" href={INSTAGRAM} rel="noopener">@yomevoyconel30</a>
       </div>
     </div>
@@ -94,6 +99,11 @@ const INSTAGRAM = 'https://instagram.com/yomevoyconel30';
     font-size: 1.7rem; font-style: italic; line-height: 1.35;
   }
   .cita-larga { font-size: 1.25rem; color: var(--crema-tenue); }
+  .empezar {
+    background: var(--navy-hondo); border-left: 2px solid var(--mint);
+    padding: 1.1rem 1.4rem; margin: 2rem 0;
+    font-size: var(--t-menor); line-height: 1.55;
+  }
 
   .datos { margin: 0 0 2rem; display: grid; gap: 0.9rem; }
   .datos > div {
