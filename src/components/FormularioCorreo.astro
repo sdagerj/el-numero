@@ -1,0 +1,87 @@
+---
+// Netlify Forms: no hace falta backend. Netlify detecta el formulario en el
+// HTML construido y guarda los envíos en su panel.
+// El campo "bot-field" es una trampa para robots: si viene lleno, se descarta.
+interface Props { compacto?: boolean; }
+const { compacto = false } = Astro.props;
+---
+<section class={`correo ${compacto ? 'compacto' : ''}`}>
+  <h2>Déjame tu correo</h2>
+  <p class="honesto">
+    Todavía no estoy mandando nada. Estoy juntando la lista para cuando empiece,
+    y quiero que el primero que te llegue valga la pena. Cuando arranque, te aviso
+    cada semana con el número nuevo. Nada más.
+  </p>
+
+  <form
+    name="lista"
+    method="POST"
+    data-netlify="true"
+    netlify-honeypot="bot-field"
+    action="/gracias/"
+  >
+    <input type="hidden" name="form-name" value="lista" />
+    <p class="solo-lectores">
+      <label>No llenes esto si eres humana: <input name="bot-field" tabindex="-1" autocomplete="off" /></label>
+    </p>
+
+    <div class="fila">
+      <label for="correo" class="solo-lectores">Tu correo</label>
+      <input
+        id="correo" type="email" name="correo" required
+        placeholder="tu@correo.com"
+        autocomplete="email" inputmode="email"
+        autocapitalize="off" autocorrect="off" spellcheck="false"
+      />
+      <button type="submit">Avísame</button>
+    </div>
+    <p class="letra-chica">Tu correo no se comparte con nadie. Te puedes salir cuando quieras.</p>
+  </form>
+</section>
+
+<style>
+  .correo {
+    margin-top: var(--aire);
+    padding: 2.25rem 1.75rem;
+    background: var(--navy-hondo);
+    border: 1px solid var(--crema-linea);
+    border-radius: 4px;
+  }
+  .correo.compacto { margin-top: 2rem; padding: 1.75rem 1.5rem; }
+
+  .correo h2 {
+    font-size: var(--t-h2); margin-bottom: 0.75rem;
+  }
+  .honesto {
+    font-size: var(--t-menor); color: var(--crema-tenue);
+    line-height: 1.6; margin-bottom: 1.5rem;
+  }
+
+  .fila { display: flex; gap: 0.6rem; flex-wrap: wrap; }
+  input[type='email'] {
+    flex: 1 1 14rem; min-width: 0;
+    padding: 0.85rem 1rem;
+    font-family: var(--serif); font-size: 1.1rem;
+    color: var(--navy); background: var(--crema);
+    border: 1px solid transparent; border-radius: 3px;
+  }
+  input[type='email']::placeholder { color: #7d8b95; }
+  button {
+    flex: 0 0 auto;
+    padding: 0.85rem 1.6rem;
+    font-family: var(--serif); font-size: 1.1rem; font-weight: 600;
+    color: var(--navy); background: var(--sol);
+    border: none; border-radius: 3px; cursor: pointer;
+  }
+  button:hover { background: var(--crema); }
+
+  .letra-chica {
+    margin: 0.9rem 0 0; font-size: var(--t-mini);
+    color: var(--crema-tenue); line-height: 1.5;
+  }
+
+  @media (max-width: 26rem) {
+    .fila { flex-direction: column; }
+    button { width: 100%; }
+  }
+</style>

@@ -1,0 +1,17 @@
+---
+import Base from '../layouts/Base.astro';
+import NumeroGigante from '../components/NumeroGigante.astro';
+---
+<Base titulo="No encontrado" descripcion="Esta página no existe.">
+  <div class="envoltura centro">
+    <NumeroGigante numero="404" />
+    <h1>Ese número no existe</h1>
+    <p>Puede que lo hayas escrito distinto, o que todavía no lo haya publicado.</p>
+    <p><a href="/numeros/">Ver todo el archivo →</a></p>
+  </div>
+</Base>
+<style>
+  .centro { text-align: center; padding-block: var(--aire); }
+  .centro h1 { font-size: var(--t-h2); margin: 1.5rem 0 1rem; }
+  .centro p { color: var(--crema-tenue); }
+</style>

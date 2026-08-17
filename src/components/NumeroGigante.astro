@@ -1,0 +1,32 @@
+---
+interface Props { numero: string; cantera?: string; }
+const { numero, cantera } = Astro.props;
+// Los números muy largos ("1.000.000") bajan de tamaño solos para no
+// desbordar la pantalla del teléfono.
+const largo = numero.length;
+const escala = largo <= 3 ? 1 : largo <= 5 ? 0.72 : largo <= 8 ? 0.52 : 0.4;
+---
+<div class="numero-bloque">
+  {cantera && <p class="cantera">{cantera}</p>}
+  <p class="numero" style={`--escala:${escala}`} aria-hidden="true">{numero}</p>
+  <p class="solo-lectores">El número de esta entrega es {numero}</p>
+</div>
+
+<style>
+  .numero-bloque { text-align: center; }
+  .cantera {
+    margin: 0 0 0.75rem;
+    font-size: var(--t-mini); letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--mint);
+  }
+  .numero {
+    margin: 0;
+    font-size: calc(var(--t-numero) * var(--escala, 1));
+    line-height: 0.86;
+    font-weight: 600;
+    color: var(--sol);
+    letter-spacing: -0.02em;
+    font-variant-numeric: lining-nums;
+    overflow-wrap: anywhere;
+  }
+</style>

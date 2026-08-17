@@ -1,0 +1,59 @@
+---
+interface Props { fuentes: any[]; medio?: { nombre: string; url?: string }; }
+const { fuentes = [], medio } = Astro.props;
+---
+{(fuentes.length > 0 || medio) && (
+  <aside class="fuentes">
+    {medio && (
+      <p class="medio">
+        Publicado originalmente en{' '}
+        {medio.url ? <a href={medio.url} rel="noopener">{medio.nombre}</a> : <strong>{medio.nombre}</strong>}
+      </p>
+    )}
+    {fuentes.length > 0 && (
+      <>
+        <h2>Las fuentes</h2>
+        <ol>
+          {fuentes.map((f) => (
+            <li>
+              <span class="f-nombre">{f.nombre}</span>
+              <span class="f-doc">
+                {f.url ? <a href={f.url} rel="noopener">{f.documento}</a> : f.documento}
+                <span class="f-anio"> · {f.anio}</span>
+              </span>
+            </li>
+          ))}
+        </ol>
+      </>
+    )}
+  </aside>
+)}
+
+<style>
+  .fuentes {
+    margin-top: var(--aire);
+    padding-top: 2rem;
+    border-top: 1px solid var(--crema-linea);
+  }
+  .medio {
+    font-size: var(--t-menor); color: var(--crema-tenue);
+    margin-bottom: 2rem; font-style: italic;
+  }
+  .fuentes h2 {
+    font-size: var(--t-mini); letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--mint); font-weight: 600; margin-bottom: 1.25rem;
+  }
+  .fuentes ol { margin: 0; padding: 0; list-style: none; counter-reset: f; }
+  .fuentes li {
+    counter-increment: f;
+    display: grid; grid-template-columns: 1.75rem 1fr; gap: 0.75rem;
+    margin-bottom: 1rem; font-size: var(--t-menor); line-height: 1.5;
+  }
+  .fuentes li::before {
+    content: counter(f); color: var(--sol);
+    font-size: 0.9rem; padding-top: 0.15rem;
+  }
+  .f-nombre { display: block; font-weight: 600; }
+  .f-doc { display: block; color: var(--crema-tenue); }
+  .f-anio { white-space: nowrap; }
+</style>

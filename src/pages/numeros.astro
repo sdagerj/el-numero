@@ -1,0 +1,116 @@
+---
+import Base from '../layouts/Base.astro';
+import { todosLosEditoriales, formatearFecha } from '../lib/editoriales';
+import { CANTERAS, NOMBRE_CANTERA } from '../content.config';
+
+const todos = await todosLosEditoriales();
+// Solo se ofrecen las canteras que de verdad tienen algo publicado.
+const conUso = CANTERAS.filter((c) => todos.some((e) => e.data.cantera === c));
+---
+<Base
+  titulo="El archivo"
+  descripcion="Todos los números publicados de El Número, uno por semana. Filtra por cantera: mercados, arte, mujeres, vida, efemérides."
+>
+  <div class="envoltura-amplia">
+    <header class="cabeza">
+      <h1>El archivo</h1>
+      <p class="cuenta">{todos.length} {todos.length === 1 ? 'número' : 'números'} publicados</p>
+    </header>
+
+    {conUso.length > 1 && (
+      <div class="filtros" role="group" aria-label="Filtrar por cantera">
+        <button type="button" class="filtro activo" data-cantera="todas" aria-pressed="true">Todas</button>
+        {conUso.map((c) => (
+          <button type="button" class="filtro" data-cantera={c} aria-pressed="false">{NOMBRE_CANTERA[c]}</button>
+        ))}
+      </div>
+    )}
+
+    <ul class="grilla" id="grilla">
+      {todos.map((e) => (
+        <li data-cantera={e.data.cantera}>
+          <a href={`/n/${e.id}/`} class="celda">
+            <span class="c-numero">{e.data.numero}</span>
+            <span class="c-titulo">{e.data.titulo}</span>
+            <span class="c-pie">
+              <span class="c-cantera">{NOMBRE_CANTERA[e.data.cantera]}</span>
+              <span class="c-fecha">{formatearFecha(e.data.fecha)}</span>
+            </span>
+          </a>
+        </li>
+      ))}
+    </ul>
+
+    <p class="sin-nada" id="sinNada" hidden>No hay números en esa cantera todavía.</p>
+
+    {todos.length === 0 && <p class="sin-nada">Todavía no hay ningún número publicado.</p>}
+  </div>
+</Base>
+
+<script>
+  // Filtro sin recargar la página. Si el JavaScript falla, la grilla se queda
+  // mostrando todo, que es el estado útil.
+  const botones = document.querySelectorAll<HTMLButtonElement>('.filtro');
+  const items = document.querySelectorAll<HTMLLIElement>('#grilla > li');
+  const sinNada = document.getElementById('sinNada');
+
+  botones.forEach((b) => b.addEventListener('click', () => {
+    const quiere = b.dataset.cantera;
+    botones.forEach((o) => {
+      const activo = o === b;
+      o.classList.toggle('activo', activo);
+      o.setAttribute('aria-pressed', String(activo));
+    });
+    let visibles = 0;
+    items.forEach((li) => {
+      const mostrar = quiere === 'todas' || li.dataset.cantera === quiere;
+      li.hidden = !mostrar;
+      if (mostrar) visibles++;
+    });
+    if (sinNada) sinNada.hidden = visibles > 0;
+  }));
+</script>
+
+<style>
+  .cabeza { padding-top: clamp(1.5rem, 5vw, 3rem); margin-bottom: 2rem; }
+  .cabeza h1 { font-size: var(--t-titulo); }
+  .cuenta {
+    margin: 0.75rem 0 0; font-size: var(--t-mini);
+    letter-spacing: 0.14em; text-transform: uppercase; color: var(--crema-tenue);
+  }
+
+  .filtros { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-bottom: 2.5rem; }
+  .filtro {
+    padding: 0.5rem 1.1rem;
+    font-family: var(--serif); font-size: var(--t-mini);
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--crema-tenue); background: transparent;
+    border: 1px solid var(--crema-linea); border-radius: 999px;
+    cursor: pointer;
+  }
+  .filtro:hover { color: var(--crema); border-color: var(--mint); }
+  .filtro.activo { color: var(--navy); background: var(--sol); border-color: var(--sol); }
+
+  .grilla {
+    list-style: none; margin: 0; padding: 0;
+    display: grid; gap: 1rem;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 13rem), 1fr));
+  }
+  .celda {
+    display: flex; flex-direction: column; gap: 0.6rem;
+    height: 100%; padding: 1.5rem 1.4rem 1.25rem;
+    border: 1px solid var(--crema-linea); border-radius: 4px;
+    text-decoration: none; color: inherit;
+  }
+  .celda:hover { border-color: var(--sol); }
+  .c-numero {
+    font-size: clamp(2.8rem, 9vw, 3.6rem); line-height: 0.95;
+    font-weight: 600; color: var(--sol); overflow-wrap: anywhere;
+  }
+  .c-titulo { font-size: 1.15rem; line-height: 1.3; font-weight: 600; flex: 1; }
+  .c-pie { display: flex; flex-direction: column; gap: 0.2rem; margin-top: 0.4rem; }
+  .c-cantera { font-size: var(--t-mini); letter-spacing: 0.14em; text-transform: uppercase; color: var(--mint); }
+  .c-fecha { font-size: var(--t-mini); color: var(--crema-tenue); }
+
+  .sin-nada { margin-top: 2rem; color: var(--crema-tenue); font-size: var(--t-menor); }
+</style>

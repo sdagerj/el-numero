@@ -1,0 +1,115 @@
+---
+import { render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import NumeroGigante from '../../components/NumeroGigante.astro';
+import Fuentes from '../../components/Fuentes.astro';
+import FormularioCorreo from '../../components/FormularioCorreo.astro';
+import { todosLosEditoriales, formatearFecha } from '../../lib/editoriales';
+import { NOMBRE_CANTERA } from '../../content.config';
+
+export async function getStaticPaths() {
+  const { todosLosEditoriales } = await import('../../lib/editoriales');
+  const todos = await todosLosEditoriales();
+  return todos.map((e, i) => ({
+    params: { slug: e.id },
+    props: { editorial: e, anterior: todos[i + 1], siguiente: todos[i - 1] },
+  }));
+}
+
+const { editorial, anterior, siguiente } = Astro.props;
+const d = editorial.data;
+const { Content } = await render(editorial);
+---
+<Base
+  titulo={d.titulo}
+  descripcion={d.resumen}
+  imagenOG={`/og/${editorial.id}.png`}
+  tipo="article"
+  fecha={d.fecha}
+>
+  <article>
+    <div class="envoltura cabeza">
+      <NumeroGigante numero={d.numero} cantera={NOMBRE_CANTERA[d.cantera]} />
+      <h1>{d.titulo}</h1>
+      <p class="fecha">
+        <time datetime={d.fecha.toISOString()}>{formatearFecha(d.fecha)}</time>
+      </p>
+    </div>
+
+    <div class="envoltura texto">
+      <Content />
+      <Fuentes fuentes={d.fuentes} medio={d.medio} />
+    </div>
+  </article>
+
+  <nav class="envoltura saltos" aria-label="Otros números">
+    {anterior && (
+      <a class="salto" href={`/n/${anterior.id}/`}>
+        <span class="salto-etiq">← Anterior</span>
+        <span class="salto-num">{anterior.data.numero}</span>
+        <span class="salto-tit">{anterior.data.titulo}</span>
+      </a>
+    )}
+    {siguiente && (
+      <a class="salto derecha" href={`/n/${siguiente.id}/`}>
+        <span class="salto-etiq">Siguiente →</span>
+        <span class="salto-num">{siguiente.data.numero}</span>
+        <span class="salto-tit">{siguiente.data.titulo}</span>
+      </a>
+    )}
+  </nav>
+
+  <div class="envoltura">
+    <FormularioCorreo compacto />
+  </div>
+</Base>
+
+<style>
+  .cabeza { padding-top: clamp(1.5rem, 6vw, 3.5rem); }
+  .cabeza h1 {
+    font-size: var(--t-titulo); text-align: center;
+    margin-top: 1.5rem; max-width: 20ch; margin-inline: auto;
+  }
+  .fecha {
+    text-align: center; margin: 1.25rem 0 0;
+    font-size: var(--t-mini); letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--crema-tenue);
+  }
+  .texto { margin-top: var(--aire); }
+
+  .saltos {
+    display: grid; gap: 1rem; margin-top: var(--aire);
+    grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+  }
+  .salto {
+    display: flex; flex-direction: column; gap: 0.35rem;
+    padding: 1.25rem 1.4rem;
+    border: 1px solid var(--crema-linea); border-radius: 4px;
+    text-decoration: none; color: inherit;
+  }
+  .salto:hover { border-color: var(--sol); }
+  .salto.derecha { text-align: right; }
+  .salto-etiq { font-size: var(--t-mini); letter-spacing: 0.12em; text-transform: uppercase; color: var(--crema-tenue); }
+  .salto-num { font-size: 2rem; font-weight: 600; color: var(--sol); line-height: 1; }
+  .salto-tit { font-size: var(--t-menor); line-height: 1.35; }
+</style>
+
+<style is:global>
+  .texto p { font-size: var(--t-cuerpo); line-height: 1.72; }
+  .texto p:first-of-type::first-letter {
+    float: left; font-size: 3.6em; line-height: 0.78;
+    padding-right: 0.09em; padding-top: 0.06em;
+    color: var(--sol); font-weight: 600;
+  }
+  .texto h2 { font-size: var(--t-h2); margin: 2.5rem 0 1rem; }
+  .texto h3 { font-size: 1.4rem; margin: 2rem 0 0.75rem; color: var(--mint); }
+  .texto blockquote {
+    margin: 2.25rem 0; padding-left: 1.5rem;
+    border-left: 2px solid var(--sol); font-style: italic;
+  }
+  .texto blockquote p:last-child { margin-bottom: 0; }
+  .texto ul, .texto ol { padding-left: 1.4rem; margin-bottom: 1.35em; }
+  .texto li { margin-bottom: 0.5em; }
+  .texto strong { font-weight: 700; color: var(--sol); }
+  .texto hr { border: none; border-top: 1px solid var(--crema-linea); margin: 2.5rem 0; }
+</style>

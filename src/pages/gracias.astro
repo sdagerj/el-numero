@@ -1,0 +1,20 @@
+---
+import Base from '../layouts/Base.astro';
+---
+<Base titulo="Gracias" descripcion="Quedaste en la lista de El Número.">
+  <div class="envoltura centro">
+    <p class="marca-num">✓</p>
+    <h1>Quedaste en la lista</h1>
+    <p class="texto">
+      Cuando empiece a mandar el número de la semana, te llega. Mientras tanto
+      no te voy a escribir por escribir.
+    </p>
+    <p><a href="/">← Volver al número de esta semana</a></p>
+  </div>
+</Base>
+<style>
+  .centro { text-align: center; padding-block: var(--aire); }
+  .marca-num { font-size: 5rem; color: var(--sol); margin: 0 0 1rem; line-height: 1; }
+  .centro h1 { font-size: var(--t-titulo); margin-bottom: 1.25rem; }
+  .texto { max-width: 30ch; margin-inline: auto; color: var(--crema-tenue); }
+</style>

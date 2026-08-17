@@ -1,0 +1,59 @@
+---
+const aqui = Astro.url.pathname;
+const activo = (r: string) => aqui === r || (r !== '/' && aqui.startsWith(r));
+const enlaces = [
+  { url: '/', texto: 'Esta semana' },
+  { url: '/numeros/', texto: 'Archivo' },
+  { url: '/el-30/', texto: 'El 30' },
+  { url: '/sobre/', texto: 'Quién escribe' },
+];
+---
+<header class="cabecera">
+  <div class="envoltura-amplia cabecera-fila">
+    <a href="/" class="marca" aria-label="El Número, ir al inicio">
+      <img src="/marca/icono-N_para-fondo-oscuro.svg" alt="" width="34" height="34" />
+      <span>El Número</span>
+    </a>
+    <nav aria-label="Principal">
+      <ul>
+        {enlaces.map((e) => (
+          <li>
+            <a href={e.url} aria-current={activo(e.url) ? 'page' : undefined}>{e.texto}</a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .cabecera { padding: 1.5rem 0 0.5rem; }
+  .cabecera-fila {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 1rem 1.5rem; flex-wrap: wrap;
+  }
+  .marca {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    color: var(--crema); text-decoration: none;
+    font-size: 1.2rem; font-weight: 600; letter-spacing: 0.01em;
+  }
+  .marca:hover { color: var(--sol); }
+  nav ul { display: flex; gap: 1.4rem; list-style: none; margin: 0; padding: 0; flex-wrap: wrap; }
+  /* Las cifras de Cormorant son de estilo antiguo por defecto: dentro de
+     mayúsculas ("EL 30") se ven descolocadas. */
+  nav a, .marca { font-variant-numeric: lining-nums; }
+  nav a {
+    font-size: var(--t-mini); letter-spacing: 0.1em; text-transform: uppercase;
+    text-decoration: none; color: var(--crema-tenue); padding-block: 0.35rem;
+  }
+  nav a:hover { color: var(--sol); }
+  nav a[aria-current='page'] { color: var(--sol); border-bottom: 1px solid var(--sol); }
+
+  @media (max-width: 34rem) {
+    .cabecera { padding-top: 1rem; }
+    .cabecera-fila { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
+    .marca { font-size: 1.05rem; }
+    nav ul { gap: 0.95rem; }
+    nav a { font-size: 0.72rem; letter-spacing: 0.08em; }
+  }
+</style>

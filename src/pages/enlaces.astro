@@ -1,0 +1,101 @@
+---
+import '../styles/tokens.css';
+import { elDeEstaSemana } from '../lib/editoriales';
+const actual = await elDeEstaSemana();
+
+// ← Completa estos enlaces cuando los tengas.
+const SPOTIFY   = 'https://open.spotify.com/';
+const LINKEDIN  = 'https://www.linkedin.com/';
+const INSTAGRAM = 'https://instagram.com/yomevoyconel30';
+---
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>El Número — enlaces</title>
+  <meta name="description" content="Un número, una historia. Todo lo de El Número en un solo lugar." />
+  <meta name="theme-color" content="#12486c" />
+  <link rel="icon" href="/marca/icono-N_navy.svg" type="image/svg+xml" />
+  <link rel="preload" href="/fonts/cormorant-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <meta property="og:title" content="El Número" />
+  <meta property="og:description" content="Un número, una historia." />
+  <meta property="og:image" content="/og-portada.png" />
+  <meta name="robots" content="noindex" />
+</head>
+<body class="enlaces">
+  <main>
+    <img src="/marca/logo_para-fondo-oscuro.svg" alt="El Número" class="logo" width="260" />
+
+    <div class="lista">
+      {actual && (
+        <a class="enlace destacado" href={`/n/${actual.id}/`}>
+          <span class="e-num">{actual.data.numero}</span>
+          <span class="e-txt">
+            <strong>El número de esta semana</strong>
+            <span>{actual.data.titulo}</span>
+          </span>
+        </a>
+      )}
+      <a class="enlace" href="/numeros/"><span class="e-solo">Todos los números</span></a>
+      <a class="enlace" href="/el-30/"><span class="e-solo">Yo me voy con el 30 — el podcast</span></a>
+      <a class="enlace" href={SPOTIFY} rel="noopener"><span class="e-solo">Escuchar en Spotify</span></a>
+      <a class="enlace" href={LINKEDIN} rel="noopener"><span class="e-solo">LinkedIn</span></a>
+      <a class="enlace" href={INSTAGRAM} rel="noopener"><span class="e-solo">Instagram</span></a>
+    </div>
+
+    <form name="lista" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/gracias/" class="correo">
+      <input type="hidden" name="form-name" value="lista" />
+      <p class="solo-lectores"><label>No llenar: <input name="bot-field" tabindex="-1" /></label></p>
+      <label for="c" class="c-label">Déjame tu correo y te aviso cada semana</label>
+      <p class="c-nota">Todavía no estoy mandando nada — estoy juntando la lista.</p>
+      <div class="c-fila">
+        <input id="c" type="email" name="correo" required placeholder="tu@correo.com"
+               autocomplete="email" inputmode="email" autocapitalize="off" autocorrect="off" spellcheck="false" />
+        <button type="submit">Avísame</button>
+      </div>
+    </form>
+  </main>
+</body>
+</html>
+
+<style>
+  body.enlaces {
+    min-height: 100svh; display: flex; align-items: center; justify-content: center;
+    padding: 2rem 1.25rem 3rem;
+  }
+  main { width: 100%; max-width: 27rem; }
+  .logo { display: block; margin: 0 auto 2.25rem; width: min(260px, 70%); }
+
+  .lista { display: flex; flex-direction: column; gap: 0.7rem; }
+  .enlace {
+    display: flex; align-items: center; gap: 1rem;
+    padding: 1.05rem 1.3rem;
+    border: 1px solid var(--crema-linea); border-radius: 4px;
+    text-decoration: none; color: var(--crema);
+    transition: border-color 0.15s ease;
+  }
+  .enlace:hover { border-color: var(--sol); color: var(--crema); }
+  .enlace.destacado { background: var(--navy-hondo); border-color: var(--sol); }
+  .e-num { font-size: 2.4rem; font-weight: 600; color: var(--sol); line-height: 1; flex: 0 0 auto; }
+  .e-txt { display: flex; flex-direction: column; gap: 0.15rem; min-width: 0; }
+  .e-txt strong { font-size: var(--t-mini); letter-spacing: 0.12em; text-transform: uppercase; color: var(--mint); font-weight: 600; }
+  .e-txt span { font-size: 1.1rem; line-height: 1.3; }
+  .e-solo { font-size: 1.1rem; }
+
+  .correo { margin-top: 2.25rem; }
+  .c-label { display: block; font-size: 1.1rem; font-weight: 600; margin-bottom: 0.35rem; }
+  .c-nota { margin: 0 0 0.9rem; font-size: var(--t-mini); color: var(--crema-tenue); }
+  .c-fila { display: flex; gap: 0.55rem; }
+  .c-fila input {
+    flex: 1 1 auto; min-width: 0; padding: 0.8rem 0.95rem;
+    font-family: var(--serif); font-size: 1.05rem;
+    color: var(--navy); background: var(--crema); border: none; border-radius: 3px;
+  }
+  .c-fila button {
+    flex: 0 0 auto; padding: 0.8rem 1.3rem;
+    font-family: var(--serif); font-size: 1.05rem; font-weight: 600;
+    color: var(--navy); background: var(--sol); border: none; border-radius: 3px; cursor: pointer;
+  }
+  .c-fila button:hover { background: var(--crema); }
+</style>

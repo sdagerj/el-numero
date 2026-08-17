@@ -1,0 +1,38 @@
+EL NÚMERO — PAQUETE DE LOGO
+Una evolución de "Yo me voy con el 30"
+
+────────────────────────────────────
+QUÉ HAY Y CUÁNDO USAR CADA COSA
+────────────────────────────────────
+
+/logo-principal/   — El logo completo (sol entre las colinas + "El Número")
+   • logo_navy               → uso principal, sobre fondo navy (portadas, encabezados, presentaciones)
+   • logo_para-fondo-claro   → para fondos blancos o claros (texto en navy), fondo transparente
+   • logo_para-fondo-oscuro  → para fondos oscuros o fotos (texto en crema), fondo transparente
+
+/icono/            — El símbolo "N°" para espacios pequeños
+   • icono-N_navy               → foto de perfil, favicon, sellos (cuadrado, sobre navy)
+   • icono-N_para-fondo-claro   → transparente, para fondos claros
+   • icono-N_para-fondo-oscuro  → transparente, para fondos oscuros
+
+────────────────────────────────────
+FORMATOS
+────────────────────────────────────
+.svg  → vector, escala infinita, el texto va en curvas (sirve en cualquier programa, ideal para imprenta)
+.png  → alta resolución, listo para usar en redes, web y documentos
+
+────────────────────────────────────
+CUÁNDO CADA UNO
+────────────────────────────────────
+Logo completo  → lo grande: portadas, cabeceras, láminas, cierre de video.
+Ícono "N°"     → lo pequeño: foto de perfil, favicon, marca de agua, esquinas.
+
+────────────────────────────────────
+IDENTIDAD
+────────────────────────────────────
+Colores:
+   Navy    #12486c
+   Teal    #2f8a85   ·   Mint #8fd0c8
+   Sol     #f4da55
+   Crema   #f7f2e6
+Tipografía: Cormorant Garamond (gratis en Google Fonts)

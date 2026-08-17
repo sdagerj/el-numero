@@ -1,0 +1,114 @@
+---
+import Base from '../layouts/Base.astro';
+import NumeroGigante from '../components/NumeroGigante.astro';
+import TarjetaNumero from '../components/TarjetaNumero.astro';
+import Fuentes from '../components/Fuentes.astro';
+import FormularioCorreo from '../components/FormularioCorreo.astro';
+import { render } from 'astro:content';
+import { todosLosEditoriales, formatearFecha } from '../lib/editoriales';
+import { NOMBRE_CANTERA } from '../content.config';
+
+const todos = await todosLosEditoriales();
+const actual = todos[0];
+const anteriores = todos.slice(1, 6);
+
+const { Content } = actual ? await render(actual) : { Content: null };
+---
+<Base
+  titulo={actual ? actual.data.titulo : 'El Número'}
+  descripcion={actual ? actual.data.resumen : 'Un número, una historia. Cada semana, una cifra abre una historia y deja una lección.'}
+  imagenOG={actual ? `/og/${actual.id}.png` : undefined}
+  fecha={actual?.data.fecha}
+>
+  {actual ? (
+    <article class="portada">
+      <div class="envoltura">
+        <p class="etiqueta">Esta semana</p>
+        <NumeroGigante numero={actual.data.numero} cantera={NOMBRE_CANTERA[actual.data.cantera]} />
+        <h1>{actual.data.titulo}</h1>
+        <p class="fecha">
+          <time datetime={actual.data.fecha.toISOString()}>{formatearFecha(actual.data.fecha)}</time>
+        </p>
+      </div>
+
+      <div class="envoltura texto">
+        <Content />
+        <Fuentes fuentes={actual.data.fuentes} medio={actual.data.medio} />
+      </div>
+    </article>
+  ) : (
+    <div class="envoltura vacio">
+      <NumeroGigante numero="1" />
+      <h1>Todavía no hay ningún número</h1>
+      <p>El primero llega pronto.</p>
+    </div>
+  )}
+
+  {anteriores.length > 0 && (
+    <section class="envoltura anteriores">
+      <h2>Números anteriores</h2>
+      {anteriores.map((e) => <TarjetaNumero editorial={e} />)}
+      <p class="ver-todos"><a href="/numeros/">Ver todo el archivo →</a></p>
+    </section>
+  )}
+
+  <div class="envoltura">
+    <FormularioCorreo />
+  </div>
+</Base>
+
+<style>
+  .portada { padding-top: clamp(1.5rem, 6vw, 3.5rem); }
+  .etiqueta {
+    text-align: center; margin: 0 0 1.75rem;
+    font-size: var(--t-mini); letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--crema-tenue);
+  }
+  .portada h1 {
+    font-size: var(--t-titulo);
+    text-align: center;
+    margin-top: 1.5rem;
+    max-width: 20ch; margin-inline: auto;
+  }
+  .fecha {
+    text-align: center; margin: 1.25rem 0 0;
+    font-size: var(--t-mini); letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--crema-tenue);
+  }
+
+  .texto { margin-top: var(--aire); }
+
+  .anteriores { margin-top: var(--aire); }
+  .anteriores h2 {
+    font-size: var(--t-mini); letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--mint); margin-bottom: 0.5rem;
+  }
+  .ver-todos { margin: 1.75rem 0 0; font-size: var(--t-menor); }
+  .ver-todos a { text-decoration: none; }
+  .ver-todos a:hover { text-decoration: underline; }
+
+  .vacio { text-align: center; padding-block: var(--aire); }
+  .vacio h1 { font-size: var(--t-h2); margin-top: 1.5rem; }
+</style>
+
+<style is:global>
+  /* El cuerpo del editorial, venga de donde venga el Markdown. */
+  .texto p { font-size: var(--t-cuerpo); line-height: 1.72; }
+  .texto p:first-of-type::first-letter {
+    float: left; font-size: 3.6em; line-height: 0.78;
+    padding-right: 0.09em; padding-top: 0.06em;
+    color: var(--sol); font-weight: 600;
+  }
+  .texto h2 { font-size: var(--t-h2); margin: 2.5rem 0 1rem; }
+  .texto h3 { font-size: 1.4rem; margin: 2rem 0 0.75rem; color: var(--mint); }
+  .texto blockquote {
+    margin: 2.25rem 0; padding-left: 1.5rem;
+    border-left: 2px solid var(--sol);
+    font-style: italic; color: var(--crema);
+  }
+  .texto blockquote p:last-child { margin-bottom: 0; }
+  .texto ul, .texto ol { padding-left: 1.4rem; margin-bottom: 1.35em; }
+  .texto li { margin-bottom: 0.5em; }
+  .texto strong { font-weight: 700; color: var(--sol); }
+  .texto hr { border: none; border-top: 1px solid var(--crema-linea); margin: 2.5rem 0; }
+</style>

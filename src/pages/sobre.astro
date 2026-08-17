@@ -1,0 +1,62 @@
+---
+import Base from '../layouts/Base.astro';
+---
+<Base
+  titulo="Quién escribe"
+  descripcion="Stefy Dager, economista. Cada semana un número abre una historia."
+>
+  <div class="envoltura">
+    <div class="cabeza">
+      <p class="etiqueta">Quién escribe</p>
+      <h1>Stefy Dager</h1>
+    </div>
+
+    <div class="texto">
+      <!-- ─────────────────────────────────────────────────────────────
+           ESCRIBE TU BIO AQUÍ, entre los párrafos <p> y </p>.
+           Puedes borrar estos tres y poner los que quieras.
+           Está en primera persona a propósito: es tu voz, no la mía.
+           ───────────────────────────────────────────────────────────── -->
+
+      <p class="placeholder">
+        [Un párrafo sobre quién eres y desde dónde miras: economista,
+        inversionista, madre. Qué te hace leer una cifra distinto a como
+        la leería cualquiera.]
+      </p>
+
+      <p class="placeholder">
+        [Un párrafo sobre por qué escribes esto. Para quién. Qué quieres
+        que se lleve alguien que te lee un martes en la mañana.]
+      </p>
+
+      <p class="placeholder">
+        [Un párrafo sobre de dónde vienes: Yo me voy con el 30, lo que
+        aprendiste ahí, y por qué El Número es su continuación.]
+      </p>
+
+      <!-- ───────────────────────────────────────────────────────────── -->
+
+      <p class="cierre">
+        Antes de esto hubo un podcast. <a href="/el-30/">Se llamaba Yo me voy con el 30 →</a>
+      </p>
+    </div>
+  </div>
+</Base>
+
+<style>
+  .cabeza { padding-top: clamp(1.5rem, 6vw, 3.5rem); }
+  .etiqueta {
+    margin: 0 0 1rem; font-size: var(--t-mini);
+    letter-spacing: 0.2em; text-transform: uppercase; color: var(--crema-tenue);
+  }
+  .cabeza h1 { font-size: var(--t-titulo); }
+  .texto { margin-top: 2.5rem; }
+  .texto p { font-size: var(--t-cuerpo); line-height: 1.72; }
+  /* El estilo punteado marca lo que falta por escribir. Al reemplazar el
+     texto, quita también class="placeholder" y queda normal. */
+  .placeholder {
+    color: var(--crema-tenue); font-style: italic;
+    border-left: 2px dashed var(--crema-linea); padding-left: 1.25rem;
+  }
+  .cierre { margin-top: var(--aire); font-size: var(--t-menor); }
+</style>

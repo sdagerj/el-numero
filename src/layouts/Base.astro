@@ -1,0 +1,106 @@
+---
+import '../styles/tokens.css';
+import Nav from '../components/Nav.astro';
+
+interface Props {
+  titulo: string;
+  descripcion: string;
+  imagenOG?: string;       // ruta absoluta desde la raíz, p. ej. /og/mi-slug.png
+  tipo?: 'website' | 'article';
+  fecha?: Date;
+  sinNav?: boolean;        // /enlaces va limpia, sin menú
+}
+
+const { titulo, descripcion, imagenOG, tipo = 'website', fecha, sinNav = false } = Astro.props;
+
+const url = new URL(Astro.url.pathname, Astro.site).href;
+const og = new URL(imagenOG ?? '/og-portada.png', Astro.site).href;
+const tituloCompleto = titulo === 'El Número' ? 'El Número — un número, una historia' : `${titulo} · El Número`;
+---
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>{tituloCompleto}</title>
+  <meta name="description" content={descripcion} />
+  <link rel="canonical" href={url} />
+
+  <meta name="theme-color" content="#12486c" />
+  <link rel="icon" href="/marca/icono-N_navy.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="/marca/icono-N_navy.png" />
+
+  <!-- Las fuentes van servidas desde el propio sitio: cargan antes y no
+       dependen de que Google esté disponible. -->
+  <link rel="preload" href="/fonts/cormorant-latin.woff2" as="font" type="font/woff2" crossorigin />
+
+  <!-- Para que el enlace se vea bien en WhatsApp, Instagram y LinkedIn -->
+  <meta property="og:type" content={tipo} />
+  <meta property="og:site_name" content="El Número" />
+  <meta property="og:locale" content="es_CO" />
+  <meta property="og:title" content={titulo} />
+  <meta property="og:description" content={descripcion} />
+  <meta property="og:url" content={url} />
+  <meta property="og:image" content={og} />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={titulo} />
+  <meta name="twitter:description" content={descripcion} />
+  <meta name="twitter:image" content={og} />
+  {fecha && <meta property="article:published_time" content={fecha.toISOString()} />}
+
+  <link rel="alternate" type="application/rss+xml" title="El Número" href="/rss.xml" />
+</head>
+<body>
+  <a href="#contenido" class="saltar">Saltar al contenido</a>
+  {!sinNav && <Nav />}
+
+  <main id="contenido">
+    <slot />
+  </main>
+
+  {!sinNav && (
+    <footer class="pie">
+      <div class="envoltura">
+        <img src="/marca/icono-N_para-fondo-oscuro.svg" alt="" width="44" height="44" class="pie-icono" />
+        <p class="pie-linea">
+          <strong>El Número</strong> · Un número, una historia
+        </p>
+        <p class="pie-origen">
+          Una evolución de <a href="/el-30/">Yo me voy con el 30</a>
+        </p>
+        <nav class="pie-enlaces" aria-label="Enlaces del pie">
+          <a href="/numeros/">Archivo</a>
+          <a href="/el-30/">El 30</a>
+          <a href="/sobre/">Quién escribe</a>
+          <a href="/rss.xml">RSS</a>
+        </nav>
+      </div>
+    </footer>
+  )}
+</body>
+</html>
+
+<style>
+  .saltar {
+    position: absolute; left: -9999px; top: 0;
+    background: var(--sol); color: var(--navy);
+    padding: 0.75rem 1.25rem; z-index: 100; font-size: 1rem;
+  }
+  .saltar:focus { left: 0; }
+
+  .pie {
+    border-top: 1px solid var(--crema-linea);
+    margin-top: var(--aire);
+    padding: var(--aire) 0 calc(var(--aire) * 0.7);
+    text-align: center;
+  }
+  .pie-icono { opacity: 0.85; margin-bottom: 1.25rem; }
+  .pie-linea { margin: 0 0 0.4rem; font-size: var(--t-menor); }
+  .pie-linea strong { font-weight: 600; letter-spacing: 0.01em; }
+  .pie-origen { margin: 0 0 1.75rem; font-size: var(--t-menor); color: var(--crema-tenue); }
+  .pie-enlaces { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; }
+  .pie-enlaces a { font-size: var(--t-mini); letter-spacing: 0.11em; text-transform: uppercase; text-decoration: none; }
+  .pie-enlaces a:hover { text-decoration: underline; }
+</style>
