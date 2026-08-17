@@ -27,7 +27,7 @@ const INSTAGRAM = 'https://instagram.com/yomevoyconel30';
       </p>
 
       <p>
-        Durante dos temporadas fueron conversaciones con personas que habían
+        Durante tres temporadas fueron conversaciones con personas que habían
         atravesado algo difícil. No para consolar, sino para entender: qué
         herramientas encontraron, qué les sirvió, qué harían distinto. A cada
         invitado le hacía la misma pregunta.
@@ -54,14 +54,15 @@ const INSTAGRAM = 'https://instagram.com/yomevoyconel30';
         de la primera temporada es donde arranca todo.
       </p>
 
-      <h2>Los datos del podcast</h2>
-      <dl class="datos">
-        <div><dt>Temporadas</dt><dd>2</dd></div>
-        <div><dt>Episodios</dt><dd>22</dd></div>
-        <div><dt>Duración</dt><dd>25 a 40 minutos</dd></div>
-        <div><dt>Frecuencia</dt><dd>Semanal</dd></div>
-        <div><dt>Formato</dt><dd>Diálogo semiestructurado</dd></div>
-        <div><dt>Audiencias</dt><dd>Colombia, Estados Unidos, Canadá, México y España</dd></div>
+      <dl class="cifras">
+        <div>
+          <dd>3</dd>
+          <dt>temporadas</dt>
+        </div>
+        <div>
+          <dd>32</dd>
+          <dt>capítulos</dt>
+        </div>
       </dl>
 
       <blockquote class="cita-larga">
@@ -105,13 +106,21 @@ const INSTAGRAM = 'https://instagram.com/yomevoyconel30';
     font-size: var(--t-menor); line-height: 1.55;
   }
 
-  .datos { margin: 0 0 2rem; display: grid; gap: 0.9rem; }
-  .datos > div {
-    display: flex; justify-content: space-between; gap: 1rem;
-    padding-bottom: 0.9rem; border-bottom: 1px solid var(--crema-linea);
+  .cifras {
+    display: flex; justify-content: center; gap: clamp(3rem, 14vw, 6rem);
+    margin: var(--aire) 0;
+    padding: 2rem 0;
+    border-block: 1px solid var(--crema-linea);
+    text-align: center;
   }
-  .datos dt { font-size: var(--t-mini); letter-spacing: 0.14em; text-transform: uppercase; color: var(--mint); }
-  .datos dd { margin: 0; text-align: right; font-size: var(--t-menor); }
+  .cifras dd {
+    margin: 0; font-size: clamp(3.5rem, 16vw, 5rem); line-height: 1;
+    font-weight: 600; color: var(--sol); font-variant-numeric: lining-nums;
+  }
+  .cifras dt {
+    margin-top: 0.5rem; font-size: var(--t-mini);
+    letter-spacing: 0.16em; text-transform: uppercase; color: var(--mint);
+  }
 
   .botones { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 2.5rem; }
   .boton {
