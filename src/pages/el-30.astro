@@ -1,6 +1,5 @@
 ---
 import Base from '../layouts/Base.astro';
-import NumeroGigante from '../components/NumeroGigante.astro';
 
 // El primer capítulo de la temporada 1: es por donde debe empezar alguien que
 // llega nuevo, no por el último.
@@ -13,9 +12,15 @@ const INSTAGRAM = 'https://instagram.com/yomevoyconel30';
 >
   <div class="envoltura">
     <div class="cabeza">
-      <p class="etiqueta">El podcast</p>
-      <NumeroGigante numero="30" />
-      <h1>Yo me voy con el 30</h1>
+      <!-- El logo del podcast lleva el 30 dentro: poner además el número
+           gigante del sitio sería decir dos veces lo mismo. -->
+      <img
+        src="/marca/logo-yomevoyconel30.png"
+        alt="Yo me voy con el 30 — podcast"
+        width="1000" height="855"
+        class="logo30"
+      />
+      <h1 class="solo-lectores">Yo me voy con el 30</h1>
     </div>
 
     <div class="texto">
@@ -72,13 +77,9 @@ const INSTAGRAM = 'https://instagram.com/yomevoyconel30';
 
 <style>
   .cabeza { padding-top: clamp(1.5rem, 6vw, 3.5rem); text-align: center; }
-  .etiqueta {
-    margin: 0 0 1.75rem; font-size: var(--t-mini);
-    letter-spacing: 0.2em; text-transform: uppercase; color: var(--crema-tenue);
-  }
-  .cabeza h1 {
-    font-size: var(--t-titulo); margin-top: 1.5rem;
-    max-width: 18ch; margin-inline: auto;
+  .logo30 {
+    display: block; width: min(100%, 30rem);
+    height: auto; margin: 0 auto;
   }
   .texto { margin-top: var(--aire); }
   .texto p { font-size: var(--t-cuerpo); line-height: 1.72; }
