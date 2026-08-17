@@ -3,38 +3,83 @@ import Base from '../layouts/Base.astro';
 ---
 <Base
   titulo="Quién escribe"
-  descripcion="Stefy Dager, economista. Cada semana un número abre una historia."
+  descripcion="Stefy Dager, economista. Dirige un family office, vive en Barranquilla y cada semana elige un número que abre una historia."
 >
   <div class="envoltura">
     <div class="cabeza">
+      <img
+        src="/fotos/stefy.jpg"
+        alt="Stefy Dager"
+        width="481" height="775"
+        class="retrato"
+      />
       <p class="etiqueta">Quién escribe</p>
       <h1>Stefy Dager</h1>
     </div>
 
     <div class="texto">
-      <!-- ─────────────────────────────────────────────────────────────
-           ESCRIBE TU BIO AQUÍ, entre los párrafos <p> y </p>.
-           Puedes borrar estos tres y poner los que quieras.
-           Está en primera persona a propósito: es tu voz, no la mía.
-           ───────────────────────────────────────────────────────────── -->
-
-      <p class="placeholder">
-        [Un párrafo sobre quién eres y desde dónde miras: economista,
-        inversionista, madre. Qué te hace leer una cifra distinto a como
-        la leería cualquiera.]
+      <p>
+        Soy economista. Dirijo un family office, presido una junta. Me fascina
+        el arte. Vivo en Barranquilla, frente al río Magdalena, después de
+        veintidós años en Bogotá.
       </p>
 
-      <p class="placeholder">
-        [Un párrafo sobre por qué escribes esto. Para quién. Qué quieres
-        que se lleve alguien que te lee un martes en la mañana.]
+      <p>
+        Siempre quise ser profesora. Universitaria. Me dijeron que no —no tenía
+        doctorado, y nunca tuve tiempo de sacarlo.
       </p>
 
-      <p class="placeholder">
-        [Un párrafo sobre de dónde vienes: Yo me voy con el 30, lo que
-        aprendiste ahí, y por qué El Número es su continuación.]
+      <p>Terminé enseñando igual. Primero por un micrófono. Ahora por acá.</p>
+
+      <p>
+        En 2021 me diagnosticaron linfoma no Hodgkin. Era pandemia: la clínica
+        la pasé sola, mi marido y mis hijos en la casa. Seis meses después lo
+        había vencido.
       </p>
 
-      <!-- ───────────────────────────────────────────────────────────── -->
+      <p>
+        Me dijeron que la probabilidad de que volviera era del setenta por
+        ciento. Decidí vivir por el treinta.
+      </p>
+
+      <p>
+        Eso no me lo enseñó ninguna clase de finanzas: <strong>el mismo dato
+        admite dos vidas.</strong> No cambia la cifra —cambia cuál eliges mirar.
+      </p>
+
+      <figure class="foto">
+        <img
+          src="/fotos/florencia.jpg"
+          alt="Stefy Dager en el Ponte Vecchio, Florencia"
+          width="1400" height="1867" loading="lazy"
+        />
+        <figcaption>Florencia, junio de 2026</figcaption>
+      </figure>
+
+      <p>Me visualicé abrazando a mi marido en la Torre Eiffel. Lo cumplí.</p>
+
+      <p>
+        Ahora viajo con mi familia cada vez que puedo. No es un lujo —es la
+        manera más literal que encontré de vivir por el treinta.
+      </p>
+
+      <p>
+        Escribo para quien está construyendo algo. Su carrera, su plata, su
+        familia, su siguiente capítulo. Pienso en mujeres —es desde donde
+        miro—. Pero lo que une a quien me lee no es el género. Es el momento.
+      </p>
+
+      <p>
+        Cada semana elijo un número. De los mercados, del arte, de una
+        conversación oída en un ascensor. Le busco la historia que tiene detrás.
+      </p>
+
+      <blockquote>
+        Un número solo sirve si puedo leerlo distinto a como lo leería
+        cualquiera.
+      </blockquote>
+
+      <p>Con el mío aprendí cómo.</p>
 
       <p class="cierre">
         Antes de esto hubo un podcast. <a href="/el-30/">Se llamaba Yo me voy con el 30 →</a>
@@ -44,19 +89,35 @@ import Base from '../layouts/Base.astro';
 </Base>
 
 <style>
-  .cabeza { padding-top: clamp(1.5rem, 6vw, 3.5rem); }
+  .cabeza { padding-top: clamp(1.5rem, 6vw, 3.5rem); text-align: center; }
+  /* El retrato original mide 481 px de ancho: mostrado a 220 se ve nítido
+     incluso en pantallas de alta densidad. Ampliarlo lo volvería borroso. */
+  .retrato {
+    width: 220px; height: auto;
+    border-radius: 3px; display: block; margin: 0 auto 2rem;
+  }
   .etiqueta {
-    margin: 0 0 1rem; font-size: var(--t-mini);
+    margin: 0 0 0.75rem; font-size: var(--t-mini);
     letter-spacing: 0.2em; text-transform: uppercase; color: var(--crema-tenue);
   }
   .cabeza h1 { font-size: var(--t-titulo); }
-  .texto { margin-top: 2.5rem; }
+
+  .texto { margin-top: var(--aire); }
   .texto p { font-size: var(--t-cuerpo); line-height: 1.72; }
-  /* El estilo punteado marca lo que falta por escribir. Al reemplazar el
-     texto, quita también class="placeholder" y queda normal. */
-  .placeholder {
-    color: var(--crema-tenue); font-style: italic;
-    border-left: 2px dashed var(--crema-linea); padding-left: 1.25rem;
+  .texto strong { color: var(--sol); font-weight: 700; }
+
+  blockquote {
+    margin: 2.5rem 0; padding-left: 1.5rem;
+    border-left: 2px solid var(--sol);
+    font-size: 1.55rem; font-style: italic; line-height: 1.35;
   }
+
+  .foto { margin: var(--aire) 0; }
+  .foto img { width: 100%; height: auto; border-radius: 3px; display: block; }
+  .foto figcaption {
+    margin-top: 0.7rem; font-size: var(--t-mini);
+    letter-spacing: 0.1em; text-transform: uppercase; color: var(--crema-tenue);
+  }
+
   .cierre { margin-top: var(--aire); font-size: var(--t-menor); }
 </style>
