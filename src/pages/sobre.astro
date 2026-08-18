@@ -1,5 +1,11 @@
 ---
+import fs from 'node:fs';
 import Base from '../layouts/Base.astro';
+
+// La foto de Paris se coloca sola en cuanto el archivo exista.
+// Basta con subir public/fotos/paris.jpg y volver a desplegar:
+// si no esta, este bloque no se dibuja y la pagina queda igual de bien.
+const hayParis = fs.existsSync('public/fotos/paris.jpg');
 ---
 <Base
   titulo="Quién escribe"
@@ -57,6 +63,17 @@ import Base from '../layouts/Base.astro';
       </figure>
 
       <p>Me visualicé abrazando a mi marido en la Torre Eiffel. Lo cumplí.</p>
+
+      {hayParis && (
+        <figure class="foto">
+          <img
+            src="/fotos/paris.jpg"
+            alt="Stefy Dager frente a la Torre Eiffel, con los brazos en alto"
+            loading="lazy"
+          />
+          <figcaption>París. Lo cumplí.</figcaption>
+        </figure>
+      )}
 
       <p>
         Ahora viajo con mi familia cada vez que puedo. No es un lujo —es la
