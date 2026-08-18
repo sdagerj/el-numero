@@ -7,7 +7,21 @@ código: esto está escrito para leerse de arriba abajo.
 
 ## 1. Publicar un editorial nuevo
 
-### La forma corta
+### La forma corta: desde la app
+
+En **Memorias → El Número**, abre la entrega y baja hasta el bloque
+**«Para la web»**. Llena el resumen, la cantera y la fecha, añade las fuentes
+si las tienes, y toca **🌐 Publicar en la web**.
+
+Antes de subir nada te enseña exactamente qué va a publicar. Confirmas, y en un
+par de minutos está en línea. Si vuelves a publicar la misma entrega, se
+actualiza — no se duplica.
+
+Necesita una llave de GitHub guardada una sola vez en **Ajustes → Publicar en
+la web**. Sin ella el botón sigue sirviendo: te da el archivo hecho para que lo
+subas a mano.
+
+### La otra forma corta
 
 Escríbeme:
 
