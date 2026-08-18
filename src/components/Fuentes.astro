@@ -16,11 +16,13 @@ const { fuentes = [], medio } = Astro.props;
         <ol>
           {fuentes.map((f) => (
             <li>
-              <span class="f-nombre">{f.nombre}</span>
-              <span class="f-doc">
-                {f.url ? <a href={f.url} rel="noopener">{f.documento}</a> : f.documento}
-                <span class="f-anio"> · {f.anio}</span>
-              </span>
+              <div class="f-cuerpo">
+                <span class="f-nombre">{f.nombre}</span>
+                <span class="f-doc">
+                  {f.url ? <a href={f.url} rel="noopener">{f.documento}</a> : f.documento}
+                  <span class="f-anio"> · {f.anio}</span>
+                </span>
+              </div>
             </li>
           ))}
         </ol>
@@ -53,6 +55,7 @@ const { fuentes = [], medio } = Astro.props;
     content: counter(f); color: var(--sol);
     font-size: 0.9rem; padding-top: 0.15rem;
   }
+  .f-cuerpo { min-width: 0; }
   .f-nombre { display: block; font-weight: 600; }
   .f-doc { display: block; color: var(--crema-tenue); }
   .f-anio { white-space: nowrap; }
