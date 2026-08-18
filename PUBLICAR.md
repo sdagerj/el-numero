@@ -38,13 +38,13 @@ fecha: 2026-08-24
 resumen: Una o dos frases. Esto es lo que se ve en WhatsApp y en Google.
 cantera: mercados
 fuentes:
-  - nombre: DANE
-    documento: Encuesta de micronegocios
+  - nombre: Nombre de la institución
+    documento: Nombre del informe o la encuesta
     anio: 2026
-    url: https://www.dane.gov.co/algo
+    url: https://enlace-a-la-fuente.com
 medio:
-  nombre: La República
-  url: https://www.larepublica.co/algo
+  nombre: Nombre del periódico
+  url: https://enlace-al-articulo.com
 ---
 
 Aquí empieza tu editorial. Escribe normal.
@@ -71,6 +71,16 @@ en dorado.
 | `fuentes` | La lista de citas. Puede ir vacía: `fuentes: []` | No |
 | `medio` | Solo si salió antes en un periódico | No |
 | `borrador` | Ponle `borrador: true` para dejarlo escrito **sin publicar** | No |
+
+### Las fuentes: escríbelas siempre reales
+
+El bloque de fuentes es lo que separa un editorial con criterio de una
+opinión suelta. **Nunca pongas una institución o una cifra que no hayas
+comprobado**: quien te lea va a dar por cierto lo que digas ahí, y va con tu
+nombre encima.
+
+Si todavía no tienes la fuente a mano, deja `fuentes: []` y el bloque no
+aparece. Es preferible a inventarla.
 
 ### Tres reglas que evitan el 90% de los problemas
 
