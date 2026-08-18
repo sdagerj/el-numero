@@ -3,7 +3,7 @@ import { render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import NumeroGigante from '../../components/NumeroGigante.astro';
 import Fuentes from '../../components/Fuentes.astro';
-import FormularioCorreo from '../../components/FormularioCorreo.astro';
+import Escribeme from '../../components/Escribeme.astro';
 import { todosLosEditoriales, formatearFecha } from '../../lib/editoriales';
 import { NOMBRE_CANTERA } from '../../content.config';
 
@@ -60,7 +60,7 @@ const { Content } = await render(editorial);
   </nav>
 
   <div class="envoltura">
-    <FormularioCorreo compacto />
+    <Escribeme compacto />
   </div>
 </Base>
 

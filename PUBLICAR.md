@@ -149,18 +149,16 @@ Dímelo y lo cambio yo.
 
 ---
 
-## 4. Los correos de la lista
+## 4. Cómo te escribe la gente
 
-El formulario usa **Netlify Forms**. No hay que configurar nada: ya funciona.
+No hay formulario ni lista de correo. En la portada, en cada editorial y en
+`/enlaces` hay un bloque que dice **"Si quieres saber de mí, escríbeme"** con tu
+correo y tu Instagram. Quien te quiera escribir, te escribe directo: llega a tu
+bandeja como cualquier otro correo.
 
-Para ver quién se ha apuntado: en Netlify, pestaña **Forms** → formulario
-**`lista`**. Ahí están todos los correos y se pueden descargar en un archivo.
+No hay nada que configurar y no hay nada que se pueda caer.
 
-Para que te avise cuando alguien se apunta:
-**Forms → Settings → Form notifications → Add notification → Email notification**.
-
-El plan gratuito de Netlify incluye 100 envíos al mes. Si algún mes te pasas,
-Netlify te avisa.
+Si algún día quieres una lista de verdad, dímelo y la montamos.
 
 ---
 
@@ -172,7 +170,7 @@ Netlify te avisa.
 | El enlace del podcast en Spotify | `src/pages/el-30.astro` y `src/pages/enlaces.astro`, arriba del todo |
 | Tu LinkedIn e Instagram | `src/pages/enlaces.astro`, arriba del todo |
 | Los colores de la marca | `src/styles/tokens.css` — están todos juntos al principio |
-| El texto del formulario | `src/components/FormularioCorreo.astro` |
+| El texto de "escríbeme" y tu correo | `src/components/Escribeme.astro` |
 
 O simplemente pídemelo.
 

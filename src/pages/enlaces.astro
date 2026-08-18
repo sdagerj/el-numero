@@ -7,6 +7,7 @@ const actual = await elDeEstaSemana();
 const SPOTIFY   = 'https://open.spotify.com/episode/3HUspxeHwX3oy6X4n4ATYM';
 const LINKEDIN  = 'https://www.linkedin.com/';
 const INSTAGRAM = 'https://instagram.com/yomevoyconel30';
+const CORREO    = 'sdagerj@gmail.com';
 ---
 <!doctype html>
 <html lang="es">
@@ -42,19 +43,8 @@ const INSTAGRAM = 'https://instagram.com/yomevoyconel30';
       <a class="enlace" href={SPOTIFY} rel="noopener"><span class="e-solo">Escuchar el capítulo 1 en Spotify</span></a>
       <a class="enlace" href={LINKEDIN} rel="noopener"><span class="e-solo">LinkedIn</span></a>
       <a class="enlace" href={INSTAGRAM} rel="noopener"><span class="e-solo">Instagram</span></a>
+      <a class="enlace" href={`mailto:${CORREO}?subject=El%20N%C3%BAmero`}><span class="e-solo">Escríbeme</span></a>
     </div>
-
-    <form name="lista" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/gracias/" class="correo">
-      <input type="hidden" name="form-name" value="lista" />
-      <p class="solo-lectores"><label>No llenar: <input name="bot-field" tabindex="-1" /></label></p>
-      <label for="c" class="c-label">Déjame tu correo y te aviso cada semana</label>
-      <p class="c-nota">Todavía no estoy mandando nada — estoy juntando la lista.</p>
-      <div class="c-fila">
-        <input id="c" type="email" name="correo" required placeholder="tu@correo.com"
-               autocomplete="email" inputmode="email" autocapitalize="off" autocorrect="off" spellcheck="false" />
-        <button type="submit">Avísame</button>
-      </div>
-    </form>
   </main>
 </body>
 </html>
