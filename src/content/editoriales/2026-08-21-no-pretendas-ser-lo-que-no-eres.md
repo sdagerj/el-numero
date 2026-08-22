@@ -7,17 +7,19 @@ cantera: vida
 fuentes: []
 ---
 
-Los Medici marcaron Florencia durante casi tres siglos. Banqueros, mecenas, papas. Financiaron el Renacimiento —Miguel Ángel, Botticelli, Leonardo da Vinci—. Se inventaron la letra de cambio y montaron los primeros bancos internacionales, con sucursales en toda Europa. Hasta administraron las finanzas del Vaticano. El dinero más poderoso del continente pasó por sus manos durante generaciones, y nadie los derrocó desde adentro.
+Los Medici marcaron Florencia durante casi tres siglos. Banqueros, mecenas, papas. Financiaron el Renacimiento —Miguel Ángel, Botticelli, Leonardo da Vinci, quien pasó por su círculo—. Perfeccionaron el uso de la letra de cambio y montaron los primeros bancos internacionales en red, con sucursales en toda Europa. Hasta administraron las finanzas del Vaticano. El dinero más poderoso del continente pasó por sus manos durante generaciones, y nadie los derrocó desde adentro.
 
 No llegaron ahí por gritar más fuerte. Llegaron por entender algo que casi nadie entiende: el poder que se muestra, se gasta.
 
-Cuando Giovanni de Medici le pasó el mando a su hijo Cosimo, no le dio estrategias ni manuales de liderazgo. No le habló de alianzas ni de ejércitos. Le dejó una sola instrucción. Dos frases. Las mismas que seis siglos después siguen siendo las más difíciles de aplicar.
+Los principios que acompañaron la vida de los Medici pasando el mando de generación en generación fue no dar estrategias ni manuales de liderazgo. No enseñaban de alianzas ni de ejércitos. Solo una sola instrucción, la cual era el principio de cómo vivieron los Medici . Dos frases. Las mismas que seis siglos después siguen siendo las más difíciles de aplicar.
 
 "Ser rico sin parecerlo. Mandar sin exhibirse."
 
 — Florencia, siglo XV.
 
-Esta semana caminé por esas mismas calles. Vi carteras de lujo siendo fotografiadas para redes. Vi gente corriendo de monumento en monumento sin detenerse a mirar. Vi mujeres paradas frente a una obra maestra preocupadas por el ángulo, sin haber mirado el cuadro. El poder disfrazado de contenido. Y pensé: en 630 años, la tentación de demostrar no ha cambiado nada. Lo que cambió es cuánto nos cuesta resistirla —y cuánto más cara se ha vuelto la inseguridad.
+Los Medici **rechazaron deliberadamente el título de "Señor de Florencia"** durante generaciones. Cosimo de Medici gobernó la ciudad durante 30 años (1434–1464) sin tener cargo oficial. Se hacía llamar *ciudadano privado*.
+
+Esta semana caminé por esas mismas calles. Vi carteras de lujo posando contra la piedra, con la dueña agachada buscándole la luz. Vi gente corriendo de monumento en monumento, cumpliendo una lista, sin detenerse frente a ninguno el tiempo suficiente para apreciarlo. Vi mujeres paradas frente a obras de Caravaggio preocupadas por el ángulo, por la luz, por la historia o el reel que estaban haciendo —y alejándose sin haber mirado el cuadro. Me quedé unos minutos viendo cuántas se iban sin mirar o apreciar y fueron muchas. El poder disfrazado de contenido. Y pensé: en casi seis siglos, la tentación de demostrar no ha cambiado. Lo que cambió es cuánto nos cuesta resistirla —y cuánto más se ha generado la inseguridad.
 
 La frase me llegó de la manera más inesperada: mi esposo la leyó en voz alta desde una app de historia que había armado con Claude mientras recorríamos los museos. Me paró en seco.
 
