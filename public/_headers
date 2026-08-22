@@ -1,0 +1,17 @@
+# Cabeceras de caché. Cloudflare Pages lee este archivo; Netlify también, así
+# que sirve para los dos y no hay que mantener la configuración por duplicado.
+#
+# Todo es estático y se puede cachear fuerte, salvo el HTML: si el navegador se
+# queda con la portada vieja, un editorial nuevo tarda días en verse.
+
+/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/marca/*
+  Cache-Control: public, max-age=604800
+
+/fotos/*
+  Cache-Control: public, max-age=604800
+
+/*
+  Cache-Control: public, max-age=0, must-revalidate
