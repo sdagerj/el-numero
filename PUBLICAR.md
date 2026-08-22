@@ -106,34 +106,29 @@ aparece. Es preferible a inventarla.
 ### Si te equivocas, no pasa nada
 
 La web **no se puede romper publicando**. Si la ficha tiene un error, la
-construcción falla y Netlify deja en pie la versión anterior. Te llega un correo
-diciendo qué salió mal, se arregla, y se vuelve a subir.
+construcción falla y Cloudflare deja en pie la versión anterior. Se arregla y se
+vuelve a subir.
 
 ---
 
-## 2. Conectar la web a Netlify (una sola vez)
+## 2. Dónde vive la web
 
-1. Entra a **[netlify.com](https://netlify.com)** y crea una cuenta
-   **con tu usuario de GitHub** (es lo más fácil: así ya quedan conectados).
-2. **Add new site → Import an existing project**.
-3. **Deploy with GitHub** → autoriza → elige el repositorio **`el-numero`**.
-4. Netlify lee la configuración sola del archivo `netlify.toml`. Debe mostrar:
-   - Build command: `npm run build`
-   - Publish directory: `dist`
+La web está en **Cloudflare Pages**, conectada al repositorio `el-numero`. Cada
+vez que se sube un editorial, Cloudflare lo detecta y reconstruye el sitio solo.
+No hay que entrar a ningún panel.
 
-   Si eso aparece, no toques nada.
-5. **Deploy site**.
+La dirección es **elnumero.pages.dev**.
 
-En un par de minutos te da una dirección tipo `algo-random-123.netlify.app`.
-Esa ya funciona y ya la puedes compartir.
+*Antes estuvo en Netlify. Se mudó porque Netlify agotó los créditos de su plan
+gratuito y pausó las publicaciones: los editoriales se subían al repositorio
+pero la web no se actualizaba. El archivo `netlify.toml` sigue ahí por si algún
+día conviene volver.*
 
-**Desde ese momento, cada vez que se sube un editorial la web se actualiza sola.**
-No hay que volver a entrar a Netlify.
+### Si alguna vez hay que volver a conectarla
 
-### Cambiarle el nombre feo
-
-**Site configuration → Change site name** → ponle `elnumero`.
-Queda `elnumero.netlify.app`, que ya sirve perfectamente para tu bio de Instagram.
+Cloudflare → **Compute** → **Workers & Pages** → **Create** → abajo del todo,
+**"Looking to deploy Pages? Get started"** → **Connect to Git** → repositorio
+`el-numero`. Preset **Astro**, comando `npm run build`, carpeta `dist`.
 
 ---
 
@@ -141,23 +136,19 @@ Queda `elnumero.netlify.app`, que ya sirve perfectamente para tu bio de Instagra
 
 Si compras un dominio (por ejemplo `elnumero.co`):
 
-1. En Netlify: **Domain management → Add a domain** → escribe tu dominio.
-2. Netlify te muestra unos **servidores de nombres** (cuatro direcciones que
-   terminan en `nsone.net`).
-3. Entra a donde compraste el dominio (GoDaddy, Namecheap, Google Domains…),
-   busca **Nameservers** o **Servidores DNS**, y pega esos cuatro.
+1. En Cloudflare, dentro del proyecto: **Custom domains → Set up a domain**.
+2. Escribe tu dominio y sigue lo que te indique.
+3. Si compraste el dominio fuera de Cloudflare, te dará unos **servidores de
+   nombres**: hay que pegarlos donde lo compraste (GoDaddy, Namecheap…), en la
+   sección **Nameservers** o **Servidores DNS**.
 4. Espera. Puede tardar entre una hora y un día. Es normal.
 
-El certificado de seguridad (el candado del navegador) Netlify lo pone solo y
+El certificado de seguridad (el candado del navegador) Cloudflare lo pone solo y
 gratis. No hay que hacer nada.
 
-**Un último paso, importante:** cuando el dominio esté andando, hay que cambiar
-una línea en `astro.config.mjs` para que las imágenes de compartir apunten al
-dominio nuevo:
-
-```js
-site: 'https://elnumero.co',   // ← tu dominio
-```
+**Un último paso, importante:** cuando el dominio esté andando hay que decírselo
+en dos sitios — `astro.config.mjs` (para el RSS, el buscador y las imágenes de
+compartir) y `js/publicar.js` de la app (para el enlace que te da al publicar).
 
 Dímelo y lo cambio yo.
 
