@@ -38,9 +38,16 @@ const { Content } = actual ? await render(actual) : { Content: null };
     </article>
   ) : (
     <div class="envoltura vacio">
-      <NumeroGigante numero="1" />
-      <h1>Todavía no hay ningún número</h1>
-      <p>El primero llega pronto.</p>
+      <p class="etiqueta">Próximamente</p>
+      <h1>Aquí encontrarás la columna de El&nbsp;Número</h1>
+      <p class="explica">
+        Un número, una historia. Cada semana una cifra abre una historia y deja
+        una lección.
+      </p>
+      <p class="mientras">
+        Mientras tanto: <a href="/el-30/">el podcast</a> y
+        <a href="/sobre/">quién escribe</a>.
+      </p>
     </div>
   )}
 
@@ -87,8 +94,24 @@ const { Content } = actual ? await render(actual) : { Content: null };
   .ver-todos a { text-decoration: none; }
   .ver-todos a:hover { text-decoration: underline; }
 
-  .vacio { text-align: center; padding-block: var(--aire); }
-  .vacio h1 { font-size: var(--t-h2); margin-top: 1.5rem; }
+  /* La portada sin editoriales no es una pagina rota: es un anuncio. Tiene que
+     verse deliberada, con el mismo aire que una portada con contenido. */
+  .vacio {
+    text-align: center;
+    padding-block: clamp(3rem, 14vw, 7rem);
+  }
+  .vacio h1 {
+    font-size: var(--t-titulo);
+    max-width: 16ch; margin-inline: auto;
+  }
+  .vacio .explica {
+    margin-top: 1.75rem; font-size: var(--t-menor);
+    color: var(--crema-tenue); line-height: 1.6;
+    max-width: 34ch; margin-inline: auto;
+  }
+  .vacio .mientras {
+    margin-top: var(--aire); font-size: var(--t-menor);
+  }
 </style>
 
 <style is:global>

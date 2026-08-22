@@ -5,6 +5,7 @@ fecha: 2026-08-21
 resumen: "Los Medici lo sabían. Su fuerza no estaba en lo que mostraban, sino en lo que podían permitirse no mostrar"
 cantera: vida
 fuentes: []
+borrador: true
 ---
 
 Los Medici marcaron Florencia durante casi tres siglos. Banqueros, mecenas, papas. Financiaron el Renacimiento —Miguel Ángel, Botticelli, Leonardo da Vinci, quien pasó por su círculo—. Perfeccionaron el uso de la letra de cambio y montaron los primeros bancos internacionales en red, con sucursales en toda Europa. Hasta administraron las finanzas del Vaticano. El dinero más poderoso del continente pasó por sus manos durante generaciones, y nadie los derrocó desde adentro.
