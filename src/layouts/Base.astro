@@ -50,6 +50,9 @@ const tituloCompleto = titulo === 'El Número' ? 'El Número — un número, una
   <meta name="twitter:image" content={og} />
   {fecha && <meta property="article:published_time" content={fecha.toISOString()} />}
 
+  <!-- El RSS sigue existiendo en /rss.xml y los lectores lo encuentran por esta
+       linea, pero no se anuncia en el pie: a quien no sabe lo que es, abrirlo
+       le sale una pantalla de codigo. -->
   <link rel="alternate" type="application/rss+xml" title="El Número" href="/rss.xml" />
 </head>
 <body>
@@ -74,7 +77,6 @@ const tituloCompleto = titulo === 'El Número' ? 'El Número — un número, una
           <a href="/numeros/">Archivo</a>
           <a href="/el-30/">El 30</a>
           <a href="/sobre/">Quién escribe</a>
-          <a href="/rss.xml">RSS</a>
         </nav>
       </div>
     </footer>

@@ -4,12 +4,13 @@ import sitemap from '@astrojs/sitemap';
 // La direccion publica del sitio. Se usa para el sitemap, el RSS y las
 // imagenes de compartir, asi que tiene que ser la de verdad.
 //
-// En Cloudflare Pages la variable CF_PAGES_URL viene puesta sola en cada
-// construccion, asi que el sitio se conoce a si mismo sin tocar nada. Cuando
-// haya dominio propio, se pone aqui y se acabo.
-const SITIO = process.env.SITIO
-  || process.env.CF_PAGES_URL
-  || 'https://elnumero.pages.dev';
+// Va escrita a mano a proposito. Cloudflare ofrece CF_PAGES_URL, pero en cada
+// construccion vale algo como https://5260d689.elnumero.pages.dev — la copia
+// temporal de ese despliegue, no la web. Usarla dejaba el RSS y las imagenes de
+// compartir apuntando a direcciones que caducan.
+//
+// Cuando haya dominio propio, se cambia esta linea (y SITIO_WEB en la app).
+const SITIO = process.env.SITIO || 'https://elnumero.pages.dev';
 export default defineConfig({
   site: SITIO,
   integrations: [sitemap()],
