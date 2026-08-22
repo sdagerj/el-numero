@@ -1,0 +1,17 @@
+// Cloudflare está fusionando Pages dentro de Workers. Con este archivo, el
+// sitio se puede desplegar por cualquiera de los dos caminos: Pages lo ignora
+// y usa su propia configuración; Workers lo lee y sirve dist/ tal cual, sin
+// código de por medio.
+//
+// No hay servidor: "assets" significa archivos estáticos servidos directamente.
+{
+  "name": "elnumero",
+  "compatibility_date": "2026-08-22",
+  "assets": {
+    "directory": "./dist",
+    // Las páginas se construyen como carpetas con index.html dentro, así que
+    // /sobre y /sobre/ tienen que llevar al mismo sitio.
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "404-page"
+  }
+}
