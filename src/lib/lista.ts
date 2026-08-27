@@ -2,11 +2,16 @@
 // los envíos, gestionan las bajas y cumplen la ley de correo comercial. Aquí
 // solo está el formulario, con el diseño del sitio.
 //
-// Se manda por POST normal, sin JavaScript. Podría hacerse con fetch para no
-// salir de la página, pero la respuesta de MailerLite no se puede leer desde
-// otro dominio, así que no habría forma de distinguir un envío correcto de uno
-// fallido — y diríamos "gracias" aunque el correo no se hubiera guardado.
-// Con el POST de toda la vida, MailerLite recibe y devuelve a /gracias/.
+// El envío va por detrás y la persona sigue en el sitio.
+//
+// La dirección de MailerLite contesta con datos en bruto —{"success":true}— e
+// ignora la redirección que se configure en su panel: quien se apuntaba
+// terminaba mirando una pantalla de código. Así que el formulario se manda con
+// JavaScript y la propia página lleva a /gracias/.
+//
+// Sin JavaScript el formulario sigue funcionando por POST normal: se apunta
+// igual, solo que acaba viendo esa pantalla fea. Es preferible a que no
+// funcione.
 //
 // ── PARA CONECTARLA ──────────────────────────────────────────────────────────
 // 1. Crear cuenta en mailerlite.com

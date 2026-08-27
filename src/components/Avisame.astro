@@ -15,7 +15,7 @@ const INSTAGRAM = 'https://instagram.com/yomevoyconel30';
         un clic y sin explicaciones.
       </p>
 
-      <form action={LISTA_ACCION} method="post" target="_blank">
+      <form action={LISTA_ACCION} method="post" target="_blank" data-lista>
         <div class="fila">
           <label for="correo" class="solo-lectores">Tu correo</label>
           <input
@@ -30,6 +30,27 @@ const INSTAGRAM = 'https://instagram.com/yomevoyconel30';
           Tu correo es solo para esto. No se comparte ni se vende.
         </p>
       </form>
+
+      <script is:inline>
+        // La respuesta de MailerLite no se puede leer desde otro dominio, así
+        // que se manda "a ciegas" (no-cors) y se da por bueno. No es una
+        // suposición alegre: la lista pide confirmación por correo, de modo que
+        // el paso siguiente —y la única promesa que hace /gracias/— es que
+        // revises tu bandeja. Si el envío hubiera fallado, no llega el mensaje
+        // y la persona lo nota ahí, no aquí.
+        document.querySelectorAll('form[data-lista]').forEach((f) => {
+          f.addEventListener('submit', (e) => {
+            const correo = f.querySelector('input[type=email]');
+            if (!correo || !correo.checkValidity()) return;   // el navegador avisa
+            e.preventDefault();
+            const boton = f.querySelector('button');
+            if (boton) { boton.disabled = true; boton.textContent = 'Un momento…'; }
+            fetch(f.action, { method: 'POST', mode: 'no-cors', body: new FormData(f) })
+              .catch(() => {})
+              .finally(() => { window.location.href = '/gracias/'; });
+          });
+        });
+      </script>
 
       <p class="o-escribeme">
         ¿Prefieres escribirme? <a href={`mailto:${CORREO}?subject=El%20N%C3%BAmero`}>{CORREO}</a>
