@@ -3,15 +3,24 @@ import Base from '../layouts/Base.astro';
 import { elDeEstaSemana } from '../lib/editoriales';
 
 // A esta página llega quien acaba de dejar su correo. MailerLite redirige aquí
-// después de guardarlo, así que nadie sale del sitio para apuntarse.
+// después de recibirlo, así que nadie sale del sitio para apuntarse.
+//
+// La lista usa doble confirmación: dejar el correo no basta, hay que abrir el
+// mensaje y confirmar. Se queda así a propósito —protege la reputación de envío
+// y evita que alguien apunte a otro sin permiso—, pero entonces esta página no
+// puede decir «ya estás en la lista»: todavía no lo está.
 const actual = await elDeEstaSemana();
 ---
-<Base titulo="Listo" descripcion="Ya estás en la lista de El Número." noindex>
+<Base titulo="Revisa tu correo" descripcion="Falta confirmar tu suscripción a El Número." noindex>
   <div class="envoltura gracias">
-    <p class="etiqueta">Listo</p>
-    <h1>Ya estás en la lista</h1>
+    <p class="etiqueta">Casi</p>
+    <h1>Revisa tu correo</h1>
     <p class="explica">
-      Te escribo cuando salga la próxima columna. Un correo, nada más.
+      Te acabo de mandar un mensaje para confirmar. Ábrelo y dale al enlace —
+      hasta que lo hagas no estás en la lista.
+    </p>
+    <p class="explica">
+      Si no aparece en unos minutos, mira en la carpeta de correo no deseado.
     </p>
     <p class="mientras">
       {actual
