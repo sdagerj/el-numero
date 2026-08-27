@@ -16,6 +16,10 @@
 //
 // Mientras esté vacío, el formulario no se dibuja: es preferible no enseñar una
 // caja de correo que no guarda nada.
-export const LISTA_ACCION = '';
+// Los dos números salen de la dirección del formulario en MailerLite:
+// preview.mailerlite.io/forms/2600437/196971072657033101/share
+//              cuenta ──┘        formulario ──┘
+export const LISTA_ACCION =
+  'https://assets.mailerlite.com/jsonp/2600437/forms/196971072657033101/subscribe';
 
 export const hayLista = () => LISTA_ACCION.trim().length > 0;
