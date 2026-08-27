@@ -1,0 +1,37 @@
+---
+import Base from '../layouts/Base.astro';
+import { elDeEstaSemana } from '../lib/editoriales';
+
+// A esta página llega quien acaba de dejar su correo. MailerLite redirige aquí
+// después de guardarlo, así que nadie sale del sitio para apuntarse.
+const actual = await elDeEstaSemana();
+---
+<Base titulo="Listo" descripcion="Ya estás en la lista de El Número." noindex>
+  <div class="envoltura gracias">
+    <p class="etiqueta">Listo</p>
+    <h1>Ya estás en la lista</h1>
+    <p class="explica">
+      Te escribo cuando salga la próxima columna. Un correo, nada más.
+    </p>
+    <p class="mientras">
+      {actual
+        ? <a href={`/n/${actual.id}/`}>Mientras tanto, lee el último número →</a>
+        : <a href="/">Volver a la portada →</a>}
+    </p>
+  </div>
+</Base>
+
+<style>
+  .gracias { text-align: center; padding-block: clamp(3rem, 14vw, 7rem); }
+  .etiqueta {
+    margin: 0 0 0.75rem; font-size: var(--t-mini);
+    letter-spacing: 0.2em; text-transform: uppercase; color: var(--mint);
+  }
+  .gracias h1 { font-size: var(--t-titulo); max-width: 16ch; margin-inline: auto; }
+  .explica {
+    margin-top: 1.75rem; font-size: var(--t-menor);
+    color: var(--crema-tenue); line-height: 1.6;
+    max-width: 34ch; margin-inline: auto;
+  }
+  .mientras { margin-top: var(--aire); font-size: var(--t-menor); }
+</style>

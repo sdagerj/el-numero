@@ -1,0 +1,108 @@
+---
+import { LISTA_ACCION, hayLista } from '../lib/lista';
+
+interface Props { compacto?: boolean; }
+const { compacto = false } = Astro.props;
+const CORREO = 'sdagerj@gmail.com';
+const INSTAGRAM = 'https://instagram.com/yomevoyconel30';
+---
+<section class={`avisame ${compacto ? 'compacto' : ''}`}>
+  {hayLista() ? (
+    <>
+      <h2>Te aviso cuando salga</h2>
+      <p class="honesto">
+        Un correo por columna. Ni uno más. Te puedes salir cuando quieras, con
+        un clic y sin explicaciones.
+      </p>
+
+      <form action={LISTA_ACCION} method="post" target="_blank">
+        <div class="fila">
+          <label for="correo" class="solo-lectores">Tu correo</label>
+          <input
+            id="correo" type="email" name="fields[email]" required
+            placeholder="tu@correo.com"
+            autocomplete="email" inputmode="email"
+            autocapitalize="off" autocorrect="off" spellcheck="false"
+          />
+          <button type="submit">Avísame</button>
+        </div>
+        <p class="letra-chica">
+          Tu correo es solo para esto. No se comparte ni se vende.
+        </p>
+      </form>
+
+      <p class="o-escribeme">
+        ¿Prefieres escribirme? <a href={`mailto:${CORREO}?subject=El%20N%C3%BAmero`}>{CORREO}</a>
+        · <a href={INSTAGRAM} rel="noopener">Instagram</a>
+      </p>
+    </>
+  ) : (
+    <>
+      <h2>Si quieres saber de mí, escríbeme</h2>
+      <p class="honesto">Sin listas y sin suscripciones. Me escribes y te contesto yo.</p>
+      <div class="botones">
+        <a class="boton" href={`mailto:${CORREO}?subject=El%20N%C3%BAmero`}>{CORREO}</a>
+        <a class="boton secundario" href={INSTAGRAM} rel="noopener">Instagram</a>
+      </div>
+    </>
+  )}
+</section>
+
+<style>
+  .avisame {
+    margin-top: var(--aire);
+    padding: 2.25rem 1.75rem;
+    background: var(--navy-hondo);
+    border: 1px solid var(--crema-linea);
+    border-radius: 4px;
+  }
+  .avisame.compacto { margin-top: 2rem; padding: 1.75rem 1.5rem; }
+  .avisame h2 { font-size: var(--t-h2); margin-bottom: 0.75rem; }
+  .honesto {
+    font-size: var(--t-menor); color: var(--crema-tenue);
+    line-height: 1.6; margin-bottom: 1.5rem;
+  }
+
+  .fila { display: flex; gap: 0.6rem; flex-wrap: wrap; }
+  input[type='email'] {
+    flex: 1 1 14rem; min-width: 0;
+    padding: 0.85rem 1rem;
+    font-family: var(--serif); font-size: 1.1rem;
+    color: var(--navy); background: var(--crema);
+    border: 1px solid transparent; border-radius: 3px;
+  }
+  input[type='email']::placeholder { color: #7d8b95; }
+  button {
+    flex: 0 0 auto;
+    padding: 0.85rem 1.6rem;
+    font-family: var(--serif); font-size: 1.1rem; font-weight: 600;
+    color: var(--navy); background: var(--sol);
+    border: none; border-radius: 3px; cursor: pointer;
+  }
+  button:hover { background: var(--crema); }
+
+  .letra-chica, .o-escribeme {
+    margin: 0.9rem 0 0; font-size: var(--t-mini);
+    color: var(--crema-tenue); line-height: 1.5;
+  }
+  .o-escribeme { margin-top: 1.4rem; overflow-wrap: anywhere; }
+
+  .botones { display: flex; gap: 0.6rem; flex-wrap: wrap; }
+  .boton {
+    padding: 0.85rem 1.6rem; border-radius: 3px;
+    font-size: 1.05rem; font-weight: 600; text-decoration: none;
+    color: var(--navy); background: var(--sol);
+    overflow-wrap: anywhere;
+  }
+  .boton:hover { background: var(--crema); }
+  .boton.secundario {
+    background: transparent; color: var(--crema);
+    border: 1px solid var(--crema-linea);
+  }
+  .boton.secundario:hover { border-color: var(--sol); color: var(--sol); }
+
+  @media (max-width: 26rem) {
+    .fila, .botones { flex-direction: column; }
+    button, .boton { width: 100%; text-align: center; }
+  }
+</style>

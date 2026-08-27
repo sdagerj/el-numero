@@ -154,16 +154,44 @@ Dímelo y lo cambio yo.
 
 ---
 
-## 4. Cómo te escribe la gente
+## 4. La lista de correo
 
-No hay formulario ni lista de correo. En la portada, en cada editorial y en
-`/enlaces` hay un bloque que dice **"Si quieres saber de mí, escríbeme"** con tu
-correo y tu Instagram. Quien te quiera escribir, te escribe directo: llega a tu
-bandeja como cualquier otro correo.
+La lista vive en **MailerLite**: ellos guardan las direcciones, mandan los
+envíos, gestionan las bajas y cumplen la ley de correo comercial. El
+formulario del sitio es tuyo —tu diseño, tu letra—, pero quien recibe el correo
+son ellos.
 
-No hay nada que configurar y no hay nada que se pueda caer.
+Mientras no esté conectada, en la web sale el bloque de **«escríbeme»** en su
+lugar. Es a propósito: es preferible eso a enseñar una caja de correo que no
+guarda nada.
 
-Si algún día quieres una lista de verdad, dímelo y la montamos.
+### Conectarla (una sola vez)
+
+1. Crea una cuenta en **[mailerlite.com](https://mailerlite.com)**. El plan
+   gratuito llega a 1.000 suscriptores y 12.000 envíos al mes.
+2. **Formularios → Embedded form**. Crea uno, dale un nombre y guárdalo.
+3. Te enseña un código. Dentro hay una línea que empieza por
+   `action="https://assets.mailerlite.com/...`. **Copia esa dirección.**
+4. En los ajustes del formulario, pon como página de agradecimiento:
+   `https://elnumero.pages.dev/gracias/`
+5. Pásamela y la conecto. (O tú: va en `src/lib/lista.ts`, en `LISTA_ACCION`.)
+
+### Cada semana
+
+Publicas la columna con el botón de la app. Después entras a MailerLite,
+escribes el correo —el título, el número, dos líneas y el enlace— y le das a
+enviar. **El envío no es automático a propósito**: lo que le llega a tu lista
+lo decides tú, no un programa.
+
+---
+
+## 4b. Cuánta gente entra
+
+**Cloudflare → tu proyecto elnumero → Analytics → Web Analytics → Enable.**
+
+Te dice visitas, qué páginas se leen más, de dónde llega la gente (Instagram,
+El Universal, Google) y desde qué país. **Sin cookies y sin banner**, porque no
+rastrea personas. No hay que tocar la web.
 
 ---
 
@@ -175,7 +203,8 @@ Si algún día quieres una lista de verdad, dímelo y la montamos.
 | El enlace del podcast en Spotify | `src/pages/el-30.astro` y `src/pages/enlaces.astro`, arriba del todo |
 | Tu LinkedIn e Instagram | `src/pages/enlaces.astro`, arriba del todo |
 | Los colores de la marca | `src/styles/tokens.css` — están todos juntos al principio |
-| El texto de "escríbeme" y tu correo | `src/components/Escribeme.astro` |
+| El texto del formulario y tu correo | `src/components/Avisame.astro` |
+| La dirección de la lista de MailerLite | `src/lib/lista.ts` |
 
 O simplemente pídemelo.
 

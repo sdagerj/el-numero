@@ -9,9 +9,10 @@ interface Props {
   tipo?: 'website' | 'article';
   fecha?: Date;
   sinNav?: boolean;        // /enlaces va limpia, sin menú
+  noindex?: boolean;       // /gracias no tiene por qué salir en Google
 }
 
-const { titulo, descripcion, imagenOG, tipo = 'website', fecha, sinNav = false } = Astro.props;
+const { titulo, descripcion, imagenOG, tipo = 'website', fecha, sinNav = false, noindex = false } = Astro.props;
 
 const url = new URL(Astro.url.pathname, Astro.site).href;
 const og = new URL(imagenOG ?? '/og-portada.png', Astro.site).href;
@@ -25,6 +26,7 @@ const tituloCompleto = titulo === 'El Número' ? 'El Número — un número, una
   <title>{tituloCompleto}</title>
   <meta name="description" content={descripcion} />
   <link rel="canonical" href={url} />
+  {noindex && <meta name="robots" content="noindex" />}
 
   <meta name="theme-color" content="#12486c" />
   <link rel="icon" href="/marca/icono-N_navy.svg" type="image/svg+xml" />

@@ -3,7 +3,7 @@ import Base from '../layouts/Base.astro';
 import NumeroGigante from '../components/NumeroGigante.astro';
 import TarjetaNumero from '../components/TarjetaNumero.astro';
 import Fuentes from '../components/Fuentes.astro';
-import Escribeme from '../components/Escribeme.astro';
+import Avisame from '../components/Avisame.astro';
 import { render } from 'astro:content';
 import { todosLosEditoriales, formatearFecha } from '../lib/editoriales';
 import { NOMBRE_CANTERA } from '../content.config';
@@ -60,7 +60,7 @@ const { Content } = actual ? await render(actual) : { Content: null };
   )}
 
   <div class="envoltura">
-    <Escribeme />
+    <Avisame />
   </div>
 </Base>
 

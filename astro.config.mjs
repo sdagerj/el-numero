@@ -13,6 +13,7 @@ import sitemap from '@astrojs/sitemap';
 const SITIO = process.env.SITIO || 'https://elnumero.pages.dev';
 export default defineConfig({
   site: SITIO,
-  integrations: [sitemap()],
+  // /gracias solo tiene sentido llegando desde el formulario: no va al sitemap.
+  integrations: [sitemap({ filter: (p) => !p.includes('/gracias') })],
   build: { format: 'directory' },
 });
