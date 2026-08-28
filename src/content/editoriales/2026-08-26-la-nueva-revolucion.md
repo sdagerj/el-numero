@@ -34,7 +34,7 @@ No es lo mismo usar una ola que ser dueña de ella.
 
 En cada gran revolución económica de la historia hubo dos grupos: los que la miraron pasar y los que se posicionaron como dueños. La diferencia casi nunca fue el genio. Fue la decisión. La decisión de dejar de ser solo consumidora.
 
-La pregunta que deberíamos hacernos no es si la AI va a cambiar nuestra vida —ya lo está haciendo—. La pregunta es: ¿cómo puede cambiar tu patrimonio?
+La pregunta que deberíamos hacernos no es si la IA va a cambiar nuestra vida —ya lo está haciendo—. La pregunta es: ¿cómo puede cambiar tu patrimonio?
 
 Desde Colombia, desde México, desde donde estés, hay formas concretas de entrar. No hace falta ser millonaria ni trabajar en Silicon Valley:
 
