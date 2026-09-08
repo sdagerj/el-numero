@@ -1,0 +1,30 @@
+FOTO DE PERFIL — EL NÚMERO
+Para YouTube, Instagram y cualquier sitio donde haga falta una foto de perfil.
+
+────────────────────────────────────
+CUÁL USAR
+────────────────────────────────────
+el-numero_perfil.png    → esta. 1024 x 1024 px.
+alternativa_franja.png  → la otra versión, por si algún día la prefieres.
+comparacion.png         → las dos, en círculo y al tamaño real de un comentario.
+
+────────────────────────────────────
+POR QUÉ ESTÁ HECHA ASÍ
+────────────────────────────────────
+YouTube e Instagram recortan la foto de perfil EN CÍRCULO. Las cuatro esquinas
+del cuadrado no se ven nunca, así que el sello "N°" está metido hacia adentro:
+si estuviera pegado a la esquina, quedaría cortado.
+
+Y se muestra pequeñísima: 32 px en los comentarios de YouTube, 40 en el feed de
+Instagram. A ese tamaño no se lee ningún texto. Por eso manda la cara, y la
+marca es solo una mancha navy con el punto dorado — que a 32 px sigue
+distinguiéndose.
+
+────────────────────────────────────
+DÓNDE SUBIRLA
+────────────────────────────────────
+YouTube    → Personalizar canal › Imagen de perfil (pide mínimo 98 x 98)
+Instagram  → Editar perfil › Cambiar foto
+
+La misma sirve para las dos. Conviene que sea la misma: es lo que hace que
+alguien que te vio en un sitio te reconozca en el otro.
