@@ -97,6 +97,14 @@ const hayParis = fs.existsSync('public/fotos/paris.jpg');
           alt="Stefy Dager con su marido y sus dos hijos en Barranquilla"
           width="1600" height="1067" loading="lazy"
         />
+        <div class="trio">
+        <img src="/fotos/hijo.jpg" width="750" height="1000" loading="lazy"
+             alt="Stefy Dager abrazada a su hijo" />
+        <img src="/fotos/hija.jpg" width="750" height="1000" loading="lazy"
+             alt="Stefy Dager con su hija" />
+        <img src="/fotos/marido.jpg" width="750" height="1000" loading="lazy"
+             alt="Stefy Dager con su marido" />
+        </div>
         <figcaption>Los míos. Por ellos elegí el treinta.</figcaption>
       </figure>
 
@@ -163,6 +171,17 @@ const hayParis = fs.existsSync('public/fotos/paris.jpg');
   .foto figcaption {
     margin-top: 0.7rem; font-size: var(--t-mini);
     letter-spacing: 0.1em; text-transform: uppercase; color: var(--crema-tenue);
+  }
+
+  /* Los tres de a uno van en fila y no sueltos por la pagina: separados
+     serian tres fotos mas; juntos son un solo gesto debajo del retrato. */
+  .trio {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem; margin-top: 0.5rem;
+  }
+  .trio img {
+    width: 100%; aspect-ratio: 3 / 4; object-fit: cover;
+    border-radius: 3px; display: block;
   }
 
   .cierre { margin-top: var(--aire); font-size: var(--t-menor); }
