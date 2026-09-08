@@ -14,9 +14,9 @@ const hayParis = fs.existsSync('public/fotos/paris.jpg');
   <div class="envoltura">
     <div class="cabeza">
       <img
-        src="/fotos/stefy.jpg"
+        src="/fotos/retrato.jpg"
         alt="Stefy Dager"
-        width="481" height="775"
+        width="900" height="1350"
         class="retrato"
       />
       <p class="etiqueta">Quién escribe</p>
@@ -85,10 +85,10 @@ const hayParis = fs.existsSync('public/fotos/paris.jpg');
       <figure class="foto">
         <img
           src="/fotos/familia.jpg"
-          alt="Stefy Dager con su familia junto al Tower Bridge, Londres"
-          width="1600" height="1200" loading="lazy"
+          alt="Stefy Dager con su marido y sus dos hijos en Barranquilla"
+          width="1600" height="1067" loading="lazy"
         />
-        <figcaption>Londres, con los míos</figcaption>
+        <figcaption>Los míos. Por ellos elegí el treinta.</figcaption>
       </figure>
 
       <p>
@@ -107,6 +107,15 @@ const hayParis = fs.existsSync('public/fotos/paris.jpg');
         cualquiera.
       </blockquote>
 
+      <figure class="foto">
+        <img
+          src="/fotos/rompecabezas.jpg"
+          alt="Las manos de Stefy Dager colocando una pieza de un rompecabezas"
+          width="1600" height="1067" loading="lazy"
+        />
+        <figcaption>Una pieza a la vez</figcaption>
+      </figure>
+
       <p>Con el mío aprendí cómo.</p>
 
       <p class="cierre">
@@ -118,10 +127,10 @@ const hayParis = fs.existsSync('public/fotos/paris.jpg');
 
 <style>
   .cabeza { padding-top: clamp(1.5rem, 6vw, 3.5rem); text-align: center; }
-  /* El retrato original mide 481 px de ancho: mostrado a 220 se ve nítido
-     incluso en pantallas de alta densidad. Ampliarlo lo volvería borroso. */
+  /* El retrato mide 900 px de ancho: a 300 se ve nítido incluso en pantallas
+     de alta densidad, y aguantaría bastante más si algún día hace falta. */
   .retrato {
-    width: 220px; height: auto;
+    width: min(300px, 68vw); height: auto;
     border-radius: 3px; display: block; margin: 0 auto 2rem;
   }
   .etiqueta {
