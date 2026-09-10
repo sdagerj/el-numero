@@ -36,10 +36,14 @@ const editoriales = defineCollection({
       errorMap: () => ({ message: `La cantera debe ser una de: ${CANTERAS.join(', ')}` }),
     }),
 
+    // Solo el nombre de la institucion es obligatorio. El documento y el ano
+    // ayudan a quien quiera ir a mirar, pero exigirlos tumbaba la construccion
+    // del sitio cuando la app publicaba una fuente con nombre y nada mas — que
+    // es justo lo que la app deja hacer.
     fuentes: z.array(z.object({
       nombre: z.string(),
-      documento: z.string(),
-      anio: z.union([z.number(), z.string()]),
+      documento: z.string().optional(),
+      anio: z.union([z.number(), z.string()]).optional(),
       url: z.string().url('La url de la fuente debe empezar por https://').optional(),
     })).default([]),
 
