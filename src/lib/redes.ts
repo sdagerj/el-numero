@@ -13,10 +13,9 @@ export const LINKEDIN = 'https://www.linkedin.com/in/stephanie-dager-ElNumero';
 export const SPOTIFY = 'https://open.spotify.com/episode/3HUspxeHwX3oy6X4n4ATYM';
 export const CORREO = 'sdagerj@gmail.com';
 
-// ← Pega aqui la direccion del canal cuando este listo, entre las comillas.
-//   Sale asi: https://www.youtube.com/@loquesea
-//   Mientras este vacia, YouTube no aparece en ninguna parte del sitio.
-export const YOUTUBE = '';
+// La raiz del canal, sin /posts ni /videos: asi YouTube decide que pestana
+// mostrar y el enlace no se queda apuntando a una seccion vacia.
+export const YOUTUBE = 'https://www.youtube.com/@Sdagerj';
 
 export interface Red {
   nombre: string;
