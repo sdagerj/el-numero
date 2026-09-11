@@ -1,6 +1,7 @@
 ---
 import '../styles/tokens.css';
 import Nav from '../components/Nav.astro';
+import { redes } from '../lib/redes';
 
 interface Props {
   titulo: string;
@@ -14,6 +15,7 @@ interface Props {
 
 const { titulo, descripcion, imagenOG, tipo = 'website', fecha, sinNav = false, noindex = false } = Astro.props;
 
+const enlacesRedes = redes();
 const url = new URL(Astro.url.pathname, Astro.site).href;
 const og = new URL(imagenOG ?? '/og-portada.png', Astro.site).href;
 const tituloCompleto = titulo === 'El Número' ? 'El Número — un número, una historia' : `${titulo} · El Número`;
@@ -77,9 +79,15 @@ const tituloCompleto = titulo === 'El Número' ? 'El Número — un número, una
         </p>
         <nav class="pie-enlaces" aria-label="Enlaces del pie">
           <a href="/numeros/">Archivo</a>
+          <a href="/proyecto/">El proyecto</a>
           <a href="/el-30/">El 30</a>
           <a href="/sobre/">Quién escribe</a>
         </nav>
+        {enlacesRedes.length > 0 && (
+          <nav class="pie-redes" aria-label="Redes">
+            {enlacesRedes.map((r) => <a href={r.url} rel="noopener">{r.nombre}</a>)}
+          </nav>
+        )}
       </div>
     </footer>
   )}
@@ -107,4 +115,8 @@ const tituloCompleto = titulo === 'El Número' ? 'El Número — un número, una
   .pie-enlaces { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; }
   .pie-enlaces a { font-size: var(--t-mini); letter-spacing: 0.11em; text-transform: uppercase; text-decoration: none; }
   .pie-enlaces a:hover { text-decoration: underline; }
+
+  .pie-redes { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; margin-top: 1.1rem; }
+  .pie-redes a { font-size: var(--t-mini); letter-spacing: 0.11em; text-transform: uppercase; text-decoration: none; color: var(--crema-tenue); }
+  .pie-redes a:hover { color: var(--sol); }
 </style>

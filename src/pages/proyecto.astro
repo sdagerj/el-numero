@@ -1,0 +1,214 @@
+---
+import Base from '../layouts/Base.astro';
+import { todosLosEditoriales } from '../lib/editoriales';
+import { redes } from '../lib/redes';
+import { NOMBRE_CANTERA } from '../content.config';
+
+// Los ejemplos salen de los editoriales de verdad, no de una lista escrita a
+// mano: asi la pagina se mantiene sola y nunca presume de un numero que no
+// esta publicado.
+const ejemplos = (await todosLosEditoriales()).slice(0, 3);
+
+const canteras = [
+  { id: 'mercados', pie: 'Lo que se mueve en la economía y en los mercados.' },
+  { id: 'arte', pie: 'Lo que el arte y la cultura dicen de un momento.' },
+  { id: 'mujeres', pie: 'Liderazgo, trabajo y quién llega a dónde.' },
+  { id: 'vida', pie: 'Lo que se observa en la vida diaria.' },
+  { id: 'efemerides', pie: 'Lo que el calendario trae de vuelta.' },
+] as const;
+
+const filtro = [
+  '¿Tiene gancho de actualidad?',
+  '¿Solo yo lo contaría así?',
+  '¿Revela algo que nadie está diciendo?',
+  '¿Le deja algo útil a quien lee?',
+  '¿Hay una persona detrás de esa cifra a quien entrevistar?',
+];
+
+const enlaces = redes();
+---
+<Base
+  titulo="El proyecto"
+  descripcion="El Número es una columna semanal: cada entrega parte de una cifra y la usa como puerta de entrada a una historia. Qué es, de dónde sale el número y cómo se elige."
+>
+  <div class="envoltura">
+    <div class="cabeza">
+      <p class="etiqueta">El proyecto</p>
+      <h1>Cada semana,<br />una cifra abre<br />una historia.</h1>
+    </div>
+
+    <section class="texto">
+      <p class="entrada">
+        <strong>El Número</strong> es una columna de opinión semanal. Cada
+        entrega parte de una cifra —de los mercados, de la cultura, del
+        calendario o de la vida diaria— y la usa como puerta de entrada a una
+        historia, una reflexión y una lección.
+      </p>
+
+      <p>
+        Está escrita en primera persona, con datos verificables, y cierra con
+        una pregunta abierta en lugar de una conclusión cerrada.
+      </p>
+    </section>
+
+    <section class="bloque">
+      <h2>De dónde sale el número</h2>
+      <p class="bajada">
+        Cinco canteras. De ahí salen los candidatos de cada semana.
+      </p>
+      <ul class="canteras">
+        {canteras.map((c) => (
+          <li>
+            <span class="c-nombre">{NOMBRE_CANTERA[c.id]}</span>
+            <span class="c-pie">{c.pie}</span>
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <section class="bloque">
+      <h2>El recorrido</h2>
+      <p class="recorrido">
+        Del mundo <span class="flecha">→</span> a mí <span class="flecha">→</span> a quien lee.
+      </p>
+      <p>
+        Arranca en algo que está pasando esta semana. Pasa por una lente propia
+        —economista, inversionista, quien dirige un family office, coleccionista
+        de arte, madre—. Y aterriza en algo útil para quien está construyendo
+        algo: una carrera, un patrimonio, una empresa, un siguiente capítulo.
+      </p>
+    </section>
+
+    <section class="bloque">
+      <h2>Cómo se elige</h2>
+      <p class="bajada">Un número entra si responde que sí a tres de estas cinco:</p>
+      <ol class="filtro">
+        {filtro.map((p) => <li>{p}</li>)}
+      </ol>
+      <blockquote>
+        Y una regla que no se negocia: ningún dato sin fuente primaria.
+      </blockquote>
+      <p class="nota">
+        Por eso cada entrega lleva sus fuentes al pie. Si un número no se puede
+        comprobar, no se publica.
+      </p>
+    </section>
+
+    {ejemplos.length > 0 && (
+      <section class="bloque">
+        <h2>Números ya trabajados</h2>
+        <ul class="ejemplos">
+          {ejemplos.map((e) => (
+            <li>
+              <a href={`/n/${e.id}/`}>
+                <span class="e-num">{e.data.numero}</span>
+                <span class="e-txt">
+                  <strong>{e.data.titulo}</strong>
+                  <span>{e.data.resumen}</span>
+                </span>
+              </a>
+            </li>
+          ))}
+        </ul>
+        <p class="nota"><a href="/numeros/">Todos los números →</a></p>
+      </section>
+    )}
+
+    <section class="bloque">
+      <h2>Quién escribe</h2>
+      <p>
+        <strong>Stephanie Dager.</strong> Economista con más de veinte años en
+        finanzas e inversión. Preside la junta directiva del fondo de capital
+        privado gestionado por Aritmétika y dirige su propio family office.
+        Condujo tres temporadas del podcast <a href="/el-30/">Yo me voy con el
+        30</a>. Barranquillera.
+      </p>
+      <p class="nota"><a href="/sobre/">La versión larga →</a></p>
+    </section>
+
+    <section class="bloque cierre">
+      <h2>Dónde seguirlo</h2>
+      <p>
+        La columna sale una vez por semana. Lo que no cabe en la columna
+        —las conversaciones con la gente que hay detrás de cada cifra— sale
+        por los otros lados.
+      </p>
+      <ul class="redes">
+        {enlaces.map((r) => (
+          <li><a href={r.url} rel="noopener">{r.nombre}</a></li>
+        ))}
+        <li><a href={`mailto:sdagerj@gmail.com?subject=El%20N%C3%BAmero`}>Escríbeme</a></li>
+      </ul>
+    </section>
+  </div>
+</Base>
+
+<style>
+  .cabeza { padding-top: clamp(1.5rem, 6vw, 3.5rem); }
+  .etiqueta {
+    margin: 0 0 0.9rem; font-size: var(--t-mini);
+    letter-spacing: 0.2em; text-transform: uppercase; color: var(--crema-tenue);
+  }
+  .cabeza h1 { font-size: var(--t-titulo); line-height: 1.08; margin: 0; }
+
+  .texto { margin-top: var(--aire); }
+  .texto p, .bloque p { font-size: var(--t-cuerpo); line-height: 1.72; }
+  .entrada strong { color: var(--sol); font-weight: 700; }
+
+  .bloque { margin-top: var(--aire); }
+  .bloque h2 {
+    font-size: var(--t-mini); letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--mint); font-weight: 600; margin: 0 0 1.25rem;
+  }
+  .bajada { color: var(--crema-tenue); }
+
+  .canteras { list-style: none; margin: 0; padding: 0; }
+  .canteras li {
+    display: flex; flex-direction: column; gap: 0.2rem;
+    padding: 1rem 0; border-top: 1px solid var(--crema-linea);
+  }
+  .canteras li:last-child { border-bottom: 1px solid var(--crema-linea); }
+  .c-nombre { font-size: 1.35rem; font-weight: 600; }
+  .c-pie { font-size: var(--t-menor); color: var(--crema-tenue); }
+
+  .recorrido {
+    font-size: clamp(1.4rem, 5.5vw, 1.9rem); font-style: italic;
+    margin: 0 0 1rem;
+  }
+  .flecha { color: var(--sol); font-style: normal; padding: 0 0.15em; }
+
+  .filtro { margin: 0; padding-left: 1.4rem; }
+  .filtro li { font-size: var(--t-menor); line-height: 1.6; margin-bottom: 0.55rem; }
+
+  blockquote {
+    margin: 2.25rem 0 1rem; padding-left: 1.5rem;
+    border-left: 2px solid var(--sol);
+    font-size: 1.45rem; font-style: italic; line-height: 1.35;
+  }
+  .nota { font-size: var(--t-menor) !important; color: var(--crema-tenue); }
+
+  .ejemplos { list-style: none; margin: 0; padding: 0; }
+  .ejemplos a {
+    display: flex; align-items: baseline; gap: 1.1rem;
+    padding: 1.1rem 0; border-top: 1px solid var(--crema-linea);
+    text-decoration: none; color: var(--crema);
+  }
+  .ejemplos li:last-child a { border-bottom: 1px solid var(--crema-linea); }
+  .ejemplos a:hover .e-txt strong { color: var(--sol); }
+  .e-num {
+    font-size: 2.5rem; font-weight: 600; color: var(--sol); line-height: 1;
+    flex: 0 0 auto; font-variant-numeric: lining-nums;
+  }
+  .e-txt { display: flex; flex-direction: column; gap: 0.25rem; min-width: 0; }
+  .e-txt strong { font-size: 1.2rem; font-weight: 600; line-height: 1.25; }
+  .e-txt span { font-size: var(--t-menor); color: var(--crema-tenue); line-height: 1.5; }
+
+  .redes { display: flex; flex-wrap: wrap; gap: 0.7rem; list-style: none; margin: 1.5rem 0 0; padding: 0; }
+  .redes a {
+    display: block; padding: 0.8rem 1.4rem;
+    border: 1px solid var(--crema-linea); border-radius: 3px;
+    text-decoration: none; color: var(--crema); font-size: var(--t-menor);
+    transition: border-color 0.15s ease, color 0.15s ease;
+  }
+  .redes a:hover { border-color: var(--sol); color: var(--sol); }
+</style>
