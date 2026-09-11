@@ -85,12 +85,14 @@ const enlaces = redes();
       <ol class="filtro">
         {filtro.map((p) => <li>{p}</li>)}
       </ol>
-      <blockquote>
-        Y una regla que no se negocia: ningún dato sin fuente primaria.
-      </blockquote>
-      <p class="nota">
-        Por eso cada entrega lleva sus fuentes al pie. Si un número no se puede
-        comprobar, no se publica.
+    </section>
+
+    <section class="bloque">
+      <h2>Más allá del texto</h2>
+      <p>
+        Algunas entregas no se quedan en la columna. Detrás de un número casi
+        siempre hay alguien, y esa conversación se convierte en una entrevista
+        o en un video que explica de dónde sale la cifra.
       </p>
     </section>
 
@@ -129,9 +131,8 @@ const enlaces = redes();
     <section class="bloque cierre">
       <h2>Dónde seguirlo</h2>
       <p>
-        La columna sale una vez por semana. Lo que no cabe en la columna
-        —las conversaciones con la gente que hay detrás de cada cifra— sale
-        por los otros lados.
+        La columna sale una vez por semana. Los videos y las entrevistas, por
+        los otros lados.
       </p>
       <ul class="redes">
         {enlaces.map((r) => (
@@ -180,11 +181,6 @@ const enlaces = redes();
   .filtro { margin: 0; padding-left: 1.4rem; }
   .filtro li { font-size: var(--t-menor); line-height: 1.6; margin-bottom: 0.55rem; }
 
-  blockquote {
-    margin: 2.25rem 0 1rem; padding-left: 1.5rem;
-    border-left: 2px solid var(--sol);
-    font-size: 1.45rem; font-style: italic; line-height: 1.35;
-  }
   .nota { font-size: var(--t-menor) !important; color: var(--crema-tenue); }
 
   .ejemplos { list-style: none; margin: 0; padding: 0; }
