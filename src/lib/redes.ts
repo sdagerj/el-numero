@@ -15,7 +15,7 @@ export const CORREO = 'sdagerj@gmail.com';
 
 // La raiz del canal, sin /posts ni /videos: asi YouTube decide que pestana
 // mostrar y el enlace no se queda apuntando a una seccion vacia.
-export const YOUTUBE = 'https://www.youtube.com/@Sdagerj';
+export const YOUTUBE = 'https://www.youtube.com/@StephanieDagerElNumero';
 
 export interface Red {
   nombre: string;
