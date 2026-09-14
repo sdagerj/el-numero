@@ -4,6 +4,7 @@ import NumeroGigante from '../components/NumeroGigante.astro';
 import TarjetaNumero from '../components/TarjetaNumero.astro';
 import Fuentes from '../components/Fuentes.astro';
 import Avisame from '../components/Avisame.astro';
+import Votar from '../components/Votar.astro';
 import { render } from 'astro:content';
 import { todosLosEditoriales, formatearFecha } from '../lib/editoriales';
 import { NOMBRE_CANTERA } from '../content.config';
@@ -33,6 +34,10 @@ const { Content } = actual ? await render(actual) : { Content: null };
 
       <div class="envoltura texto">
         <Content />
+        <!-- La columna de esta semana se lee entera aqui, sin entrar al
+             archivo: si la votacion no estuviera, el lector que llega por la
+             portada —que son casi todos— no la veria nunca. -->
+        <Votar slug={actual.id} />
         <Fuentes fuentes={actual.data.fuentes} medio={actual.data.medio} />
       </div>
     </article>
