@@ -14,10 +14,10 @@ export interface Opcion {
 }
 
 export const OPCIONES: Opcion[] = [
-  { id: '100', numero: '100%', texto: 'Me dio en el blanco' },
+  { id: '100', numero: '100%', texto: 'Me fascinó' },
   { id: '5050', numero: '50/50', texto: 'Me dejó dudando' },
-  { id: '30', numero: '30', texto: 'Me quedé con la minoría' },
-  { id: '0', numero: '0', texto: 'No me movió' },
+  { id: '30', numero: '30', texto: 'Algo me quedó' },
+  { id: '0', numero: '0', texto: 'No me llamó la atención' },
 ];
 
 export const IDS = OPCIONES.map((o) => o.id);
