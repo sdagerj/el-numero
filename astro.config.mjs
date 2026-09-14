@@ -14,6 +14,8 @@ const SITIO = process.env.SITIO || 'https://elnumero.pages.dev';
 export default defineConfig({
   site: SITIO,
   // /gracias solo tiene sentido llegando desde el formulario: no va al sitemap.
-  integrations: [sitemap({ filter: (p) => !p.includes('/gracias') })],
+  integrations: [sitemap({
+    filter: (p) => !p.includes('/gracias') && !p.includes('/resultados'),
+  })],
   build: { format: 'directory' },
 });

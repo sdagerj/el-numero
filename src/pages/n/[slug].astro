@@ -4,6 +4,7 @@ import Base from '../../layouts/Base.astro';
 import NumeroGigante from '../../components/NumeroGigante.astro';
 import Fuentes from '../../components/Fuentes.astro';
 import Avisame from '../../components/Avisame.astro';
+import Votar from '../../components/Votar.astro';
 import { todosLosEditoriales, formatearFecha } from '../../lib/editoriales';
 import { NOMBRE_CANTERA } from '../../content.config';
 
@@ -39,6 +40,7 @@ const { Content } = await render(editorial);
     <div class="envoltura texto">
       <Content />
       <Fuentes fuentes={d.fuentes} medio={d.medio} />
+      <Votar slug={editorial.id} />
     </div>
   </article>
 

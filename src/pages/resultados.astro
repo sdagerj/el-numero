@@ -1,0 +1,204 @@
+---
+// Los votos, solo para Stefy.
+//
+// La pagina en si es publica —es HTML estatico, como todo el sitio— pero esta
+// vacia: los numeros los trae /api/voto, que no responde sin la clave. Quien
+// entre aqui sin ella no ve un solo dato.
+//
+// La clave se pide una vez y se guarda en el navegador, para no tener que
+// escribirla en el telefono cada vez.
+import Base from '../layouts/Base.astro';
+import { todosLosEditoriales } from '../lib/editoriales';
+import { OPCIONES } from '../lib/votos';
+
+const editoriales = (await todosLosEditoriales()).map((e) => ({
+  slug: e.id,
+  numero: e.data.numero,
+  titulo: e.data.titulo,
+}));
+---
+<Base
+  titulo="Resultados"
+  descripcion="Los votos de los lectores."
+  noindex
+>
+  <div class="envoltura">
+    <div class="cabeza">
+      <p class="etiqueta">Privado</p>
+      <h1>Resultados</h1>
+    </div>
+
+    <form class="clave" id="formClave">
+      <label for="campoClave">Escribe la clave para ver los votos</label>
+      <div class="fila">
+        <input type="password" id="campoClave" autocomplete="current-password" />
+        <button type="submit">Ver</button>
+      </div>
+      <p class="error" id="errorClave" hidden></p>
+    </form>
+
+    <div id="salida" hidden></div>
+
+    <p class="pie-nota" id="pieNota" hidden>
+      <button type="button" id="olvidar" class="enlace-boton">Olvidar la clave en este teléfono</button>
+    </p>
+  </div>
+</Base>
+
+<script is:inline define:vars={{ editoriales, opciones: OPCIONES }}>
+  const form = document.getElementById('formClave');
+  const campo = document.getElementById('campoClave');
+  const error = document.getElementById('errorClave');
+  const salida = document.getElementById('salida');
+  const pieNota = document.getElementById('pieNota');
+  const MEMORIA = 'claveResultados';
+
+  const leerGuardada = () => {
+    try { return localStorage.getItem(MEMORIA) || ''; } catch { return ''; }
+  };
+
+  function pintar(totales) {
+    const filas = editoriales.map((e) => {
+      const cuenta = totales[e.slug] || {};
+      const total = opciones.reduce((n, o) => n + (cuenta[o.id] || 0), 0);
+      const celdas = opciones.map((o) => {
+        const n = cuenta[o.id] || 0;
+        const pct = total ? Math.round((n / total) * 100) : 0;
+        return `<td><span class="n">${n}</span><span class="pct">${total ? pct + '%' : '—'}</span></td>`;
+      }).join('');
+      return `<tr>
+        <th scope="row">
+          <span class="r-num">${e.numero}</span>
+          <a href="/n/${e.slug}/">${e.titulo}</a>
+        </th>
+        ${celdas}
+        <td class="total">${total}</td>
+      </tr>`;
+    }).join('');
+
+    const gran = editoriales.reduce((n, e) =>
+      n + opciones.reduce((m, o) => m + ((totales[e.slug] || {})[o.id] || 0), 0), 0);
+
+    salida.innerHTML = `
+      <p class="resumen">${gran} ${gran === 1 ? 'voto' : 'votos'} en total.</p>
+      <div class="envuelve-tabla">
+        <table>
+          <thead><tr>
+            <th scope="col">Editorial</th>
+            ${opciones.map((o) => `<th scope="col">${o.numero}</th>`).join('')}
+            <th scope="col">Total</th>
+          </tr></thead>
+          <tbody>${filas}</tbody>
+        </table>
+      </div>
+      <p class="leyenda">${opciones.map((o) => `<strong>${o.numero}</strong> ${o.texto}`).join(' · ')}</p>`;
+    salida.hidden = false;
+    form.hidden = true;
+    pieNota.hidden = false;
+  }
+
+  async function cargar(clave, avisar) {
+    error.hidden = true;
+    try {
+      const res = await fetch(`/api/voto?clave=${encodeURIComponent(clave)}`);
+      if (res.status === 401) {
+        if (avisar) { error.textContent = 'Esa clave no es.'; error.hidden = false; }
+        try { localStorage.removeItem(MEMORIA); } catch {}
+        return;
+      }
+      if (res.status === 503) {
+        error.textContent = 'Todavía no hay base de datos conectada en Cloudflare.';
+        error.hidden = false;
+        return;
+      }
+      if (!res.ok) throw new Error(String(res.status));
+      const datos = await res.json();
+      try { localStorage.setItem(MEMORIA, clave); } catch {}
+      pintar(datos.totales || {});
+    } catch {
+      error.textContent = 'No se pudo conectar. Revisa el internet.';
+      error.hidden = false;
+    }
+  }
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const v = campo.value.trim();
+    if (v) cargar(v, true);
+  });
+
+  document.getElementById('olvidar').addEventListener('click', () => {
+    try { localStorage.removeItem(MEMORIA); } catch {}
+    location.reload();
+  });
+
+  const guardada = leerGuardada();
+  if (guardada) cargar(guardada, false);
+</script>
+
+<style>
+  .cabeza { padding-top: clamp(1.5rem, 6vw, 3.5rem); }
+  .etiqueta {
+    margin: 0 0 0.75rem; font-size: var(--t-mini);
+    letter-spacing: 0.2em; text-transform: uppercase; color: var(--crema-tenue);
+  }
+  .cabeza h1 { font-size: var(--t-titulo); margin: 0; }
+
+  .clave { margin-top: var(--aire); }
+  .clave label { display: block; font-size: var(--t-menor); margin-bottom: 0.6rem; }
+  .fila { display: flex; gap: 0.55rem; max-width: 24rem; }
+  .fila input {
+    flex: 1 1 auto; min-width: 0; padding: 0.8rem 0.95rem;
+    font-family: var(--serif); font-size: 1.05rem;
+    color: var(--navy); background: var(--crema); border: none; border-radius: 3px;
+  }
+  .fila button {
+    flex: 0 0 auto; padding: 0.8rem 1.4rem;
+    font-family: var(--serif); font-size: 1.05rem; font-weight: 600;
+    color: var(--navy); background: var(--sol); border: none; border-radius: 3px; cursor: pointer;
+  }
+  .error { margin: 0.8rem 0 0; font-size: var(--t-menor); color: var(--sol); }
+
+  #salida { margin-top: var(--aire); }
+  .pie-nota { margin-top: 2rem; }
+  .enlace-boton {
+    background: none; border: none; padding: 0; cursor: pointer;
+    font-family: var(--serif); font-size: var(--t-mini);
+    letter-spacing: 0.08em; text-transform: uppercase; color: var(--crema-tenue);
+    text-decoration: underline;
+  }
+  .enlace-boton:hover { color: var(--sol); }
+</style>
+
+<style is:global>
+  #salida .resumen { font-size: var(--t-cuerpo); margin: 0 0 1.5rem; }
+  /* La tabla no cabe de ancho en un telefono: se desliza sola, y lo que nunca
+     se desliza es la pagina entera. */
+  #salida .envuelve-tabla { overflow-x: auto; }
+  #salida table { border-collapse: collapse; width: 100%; min-width: 30rem; }
+  #salida th, #salida td { padding: 0.85rem 0.45rem; text-align: center; }
+  /* La ultima columna pegada al borde perdia una letra del encabezado. */
+  #salida th:last-child, #salida td:last-child { padding-right: 0; }
+  #salida thead th {
+    font-size: var(--t-mini); letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--mint); font-weight: 600;
+    border-bottom: 1px solid var(--crema-linea);
+  }
+  #salida thead th:first-child { text-align: left; }
+  #salida tbody th {
+    text-align: left; font-weight: 400;
+    display: flex; align-items: baseline; gap: 0.7rem;
+  }
+  #salida tbody tr { border-bottom: 1px solid var(--crema-linea); }
+  #salida .r-num {
+    font-size: 1.5rem; font-weight: 600; color: var(--sol); line-height: 1;
+    font-variant-numeric: lining-nums; flex: 0 0 auto;
+  }
+  #salida tbody th a { font-size: var(--t-menor); text-decoration: none; color: var(--crema); }
+  #salida tbody th a:hover { color: var(--sol); }
+  #salida td .n { display: block; font-size: 1.25rem; font-variant-numeric: lining-nums; }
+  #salida td .pct { display: block; font-size: var(--t-mini); color: var(--crema-tenue); }
+  #salida td.total { font-size: 1.25rem; font-weight: 600; font-variant-numeric: lining-nums; }
+  #salida .leyenda { margin-top: 1.5rem; font-size: var(--t-mini); color: var(--crema-tenue); line-height: 1.8; }
+  #salida .leyenda strong { color: var(--sol); font-variant-numeric: lining-nums; }
+</style>

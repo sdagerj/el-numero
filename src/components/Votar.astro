@@ -1,0 +1,107 @@
+---
+// El lector elige con que numero se queda. No ve resultados: los totales son
+// solo para Stefy, en /resultados/.
+//
+// Se dibuja optimista —el boton responde al instante y el voto se manda
+// despues— porque esperar a Cloudflare para pintar «gracias» se siente lento
+// y el lector ya se fue.
+import { OPCIONES } from '../lib/votos';
+
+interface Props { slug: string }
+const { slug } = Astro.props;
+---
+<aside class="votar" data-slug={slug}>
+  <p class="v-pregunta">¿Con qué número te quedas?</p>
+
+  <div class="v-opciones">
+    {OPCIONES.map((o) => (
+      <button type="button" class="v-op" data-voto={o.id}>
+        <span class="v-num">{o.numero}</span>
+        <span class="v-txt">{o.texto}</span>
+      </button>
+    ))}
+  </div>
+
+  <p class="v-gracias" hidden>Gracias. Queda anotado.</p>
+  <p class="v-fallo" hidden>No se pudo guardar. Inténtalo más tarde.</p>
+</aside>
+
+<script>
+  document.querySelectorAll<HTMLElement>('.votar').forEach((v) => {
+    const slug = v.dataset.slug!;
+    const opciones = v.querySelector<HTMLElement>('.v-opciones')!;
+    const gracias = v.querySelector<HTMLElement>('.v-gracias')!;
+    const fallo = v.querySelector<HTMLElement>('.v-fallo')!;
+    const memoria = `voto:${slug}`;
+
+    // Quien ya voto ve el agradecimiento, no los botones otra vez. Se guarda en
+    // el navegador: no impide votar dos veces desde otro telefono, y esta bien
+    // — esto mide interes, no es una eleccion.
+    let yaVoto = false;
+    try { yaVoto = localStorage.getItem(memoria) !== null; } catch { /* modo privado */ }
+    if (yaVoto) { opciones.hidden = true; gracias.hidden = false; }
+
+    opciones.addEventListener('click', async (e) => {
+      const boton = (e.target as HTMLElement).closest<HTMLElement>('.v-op');
+      if (!boton) return;
+      const voto = boton.dataset.voto!;
+
+      opciones.hidden = true;
+      gracias.hidden = false;
+      try { localStorage.setItem(memoria, voto); } catch { /* modo privado */ }
+
+      try {
+        const res = await fetch('/api/voto', {
+          method: 'POST',
+          headers: { 'content-type': 'application/json' },
+          body: JSON.stringify({ slug, voto }),
+        });
+        if (!res.ok) throw new Error(String(res.status));
+      } catch {
+        // Se deshace el agradecimiento: decirle «gracias» a alguien cuyo voto
+        // se perdio es peor que admitir el fallo.
+        gracias.hidden = true;
+        fallo.hidden = false;
+        try { localStorage.removeItem(memoria); } catch { /* modo privado */ }
+      }
+    });
+  });
+</script>
+
+<style>
+  .votar {
+    margin-top: var(--aire);
+    padding-top: var(--aire);
+    border-top: 1px solid var(--crema-linea);
+  }
+  .v-pregunta {
+    margin: 0 0 1.5rem; text-align: center;
+    font-size: clamp(1.3rem, 5vw, 1.7rem); font-style: italic;
+  }
+  .v-opciones {
+    display: grid; gap: 0.7rem;
+    grid-template-columns: repeat(auto-fit, minmax(10.5rem, 1fr));
+  }
+  /* «display: grid» le gana a [hidden] del navegador: sin esta linea los
+     botones seguian ahi despues de votar y se podia votar dos veces. */
+  .v-opciones[hidden] { display: none; }
+  .v-op {
+    display: flex; flex-direction: column; align-items: center; gap: 0.35rem;
+    padding: 1.2rem 0.9rem;
+    background: none; border: 1px solid var(--crema-linea); border-radius: 4px;
+    color: var(--crema); font-family: var(--serif); cursor: pointer;
+    transition: border-color 0.15s ease;
+  }
+  .v-op:hover, .v-op:focus-visible { border-color: var(--sol); }
+  .v-num {
+    font-size: 1.9rem; font-weight: 600; color: var(--sol); line-height: 1;
+    font-variant-numeric: lining-nums;
+  }
+  .v-txt { font-size: var(--t-mini); letter-spacing: 0.04em; color: var(--crema-tenue); text-align: center; }
+
+  .v-gracias, .v-fallo {
+    margin: 0; text-align: center;
+    font-size: var(--t-menor); color: var(--crema-tenue);
+  }
+  .v-gracias { color: var(--mint); }
+</style>

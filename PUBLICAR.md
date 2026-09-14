@@ -195,6 +195,70 @@ rastrea personas. No hay que tocar la web.
 
 ---
 
+## 4c. Cómo te califican los lectores
+
+Al final de cada columna, quien la lee elige con qué número se queda:
+**100%** · **50/50** · **30** · **0**. Los resultados **no los ve nadie más
+que tú**, en `elnumero.pages.dev/resultados/`.
+
+### Conectarlo (una sola vez, 5 minutos)
+
+Sin estos pasos el bloque de votar aparece pero el voto no se guarda.
+
+**1 · Crear la base de datos**
+
+Cloudflare → menú izquierdo **Storage & Databases** → **KV** → **Create**.
+Nombre: `votos-elnumero`. Create.
+
+**2 · Enlazarla con el sitio**
+
+Cloudflare → **Workers & Pages** → tu proyecto **elnumero** → pestaña
+**Settings** → **Bindings** (o *Variables y Secretos* → *KV namespace
+bindings*) → **Add**.
+
+| Campo | Qué poner |
+|---|---|
+| Variable name | `VOTOS` *(así, en mayúsculas — el programa la busca por ese nombre)* |
+| KV namespace | `votos-elnumero` |
+
+**3 · Poner tu clave**
+
+En la misma pantalla de *Settings*, en **Variables and Secrets** → **Add**:
+
+| Campo | Qué poner |
+|---|---|
+| Type | **Secret** |
+| Name | `CLAVE_RESULTADOS` |
+| Value | la clave que quieras, inventada por ti |
+
+Esa clave es la que te va a pedir la página de resultados. Escríbela en algún
+lado — Cloudflare no te la vuelve a enseñar.
+
+**4 · Volver a desplegar**
+
+Pestaña **Deployments** → en el último → **Retry deployment**. Las variables
+nuevas solo entran en vigor en el siguiente despliegue.
+
+### Ver los resultados
+
+`elnumero.pages.dev/resultados/` → escribes la clave una vez. El teléfono la
+recuerda; si prestas el teléfono, el botón de abajo la olvida.
+
+### Lo que esta cuenta sí y no dice
+
+**Sí:** cuántos votaron cada opción, por columna, y el total.
+
+**No es a prueba de trampas.** Se guarda en el navegador que ya votaste, así
+que alguien decidido puede votar dos veces desde otro teléfono. Para medir si
+una columna gustó, sobra. Para una elección, no serviría — y no es una
+elección.
+
+**Cuántos leen** es otra cosa y ya la tienes: *Analytics → Web Analytics*
+(punto 4b). Las dos juntas son las que dicen algo: 200 lecturas con 3 votos
+significa algo muy distinto que 200 lecturas con 60 votos.
+
+---
+
 ## 5. Cambiar cosas del sitio
 
 | Qué quieres cambiar | Dónde está |
