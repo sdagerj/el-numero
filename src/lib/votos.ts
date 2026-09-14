@@ -14,7 +14,7 @@ export interface Opcion {
 }
 
 export const OPCIONES: Opcion[] = [
-  { id: '100', numero: '100%', texto: 'Me fascinó' },
+  { id: '100', numero: '100', texto: 'Me fascinó' },
   { id: '5050', numero: '50/50', texto: 'Me dejó a medias' },
   { id: '30', numero: '30', texto: 'Algo me quedó' },
   { id: '0', numero: '0', texto: 'No me llamó la atención' },
