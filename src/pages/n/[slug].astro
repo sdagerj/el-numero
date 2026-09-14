@@ -39,8 +39,11 @@ const { Content } = await render(editorial);
 
     <div class="envoltura texto">
       <Content />
-      <Fuentes fuentes={d.fuentes} medio={d.medio} />
+      <!-- La votacion va ANTES de las fuentes: al terminar de leer, lo
+           primero que aparece es la pregunta. Las fuentes son para quien
+           quiera ir a comprobar, y esos bajan igual. -->
       <Votar slug={editorial.id} />
+      <Fuentes fuentes={d.fuentes} medio={d.medio} />
     </div>
   </article>
 

@@ -11,7 +11,7 @@ interface Props { slug: string }
 const { slug } = Astro.props;
 ---
 <aside class="votar" data-slug={slug}>
-  <p class="v-pregunta">¿Con qué número te quedas?</p>
+  <p class="v-pregunta">¿Con qué número te quedas después de leer la columna?</p>
 
   <div class="v-opciones">
     {OPCIONES.map((o) => (
