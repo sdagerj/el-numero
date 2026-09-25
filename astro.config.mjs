@@ -9,8 +9,9 @@ import sitemap from '@astrojs/sitemap';
 // temporal de ese despliegue, no la web. Usarla dejaba el RSS y las imagenes de
 // compartir apuntando a direcciones que caducan.
 //
-// Cuando haya dominio propio, se cambia esta linea (y SITIO_WEB en la app).
-const SITIO = process.env.SITIO || 'https://elnumero.pages.dev';
+// Dominio propio desde septiembre de 2026. La direccion vieja,
+// elnumero.pages.dev, sigue viva y redirige aqui (ver Base.astro).
+const SITIO = process.env.SITIO || 'https://elnumero.com.co';
 export default defineConfig({
   site: SITIO,
   // /gracias solo tiene sentido llegando desde el formulario: no va al sitemap.

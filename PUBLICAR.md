@@ -117,7 +117,7 @@ La web está en **Cloudflare Pages**, conectada al repositorio `el-numero`. Cada
 vez que se sube un editorial, Cloudflare lo detecta y reconstruye el sitio solo.
 No hay que entrar a ningún panel.
 
-La dirección es **elnumero.pages.dev**.
+La dirección es **elnumero.com.co**.
 
 *Antes estuvo en Netlify. Se mudó porque Netlify agotó los créditos de su plan
 gratuito y pausó las publicaciones: los editoriales se subían al repositorio
@@ -173,7 +173,7 @@ guarda nada.
 3. Te enseña un código. Dentro hay una línea que empieza por
    `action="https://assets.mailerlite.com/...`. **Copia esa dirección.**
 4. En los ajustes del formulario, pon como página de agradecimiento:
-   `https://elnumero.pages.dev/gracias/`
+   `https://elnumero.com.co/gracias/`
 5. Pásamela y la conecto. (O tú: va en `src/lib/lista.ts`, en `LISTA_ACCION`.)
 
 ### Cada semana
@@ -199,7 +199,7 @@ rastrea personas. No hay que tocar la web.
 
 Al final de cada columna, quien la lee elige con qué número se queda:
 **100%** · **50/50** · **30** · **0**. Los resultados **no los ve nadie más
-que tú**, en `elnumero.pages.dev/resultados/`.
+que tú**, en `elnumero.com.co/resultados/`.
 
 ### Conectarlo (una sola vez, 5 minutos)
 
@@ -241,7 +241,7 @@ nuevas solo entran en vigor en el siguiente despliegue.
 
 ### Ver los resultados
 
-`elnumero.pages.dev/resultados/` → escribes la clave una vez. El teléfono la
+`elnumero.com.co/resultados/` → escribes la clave una vez. El teléfono la
 recuerda; si prestas el teléfono, el botón de abajo la olvida.
 
 ### Lo que esta cuenta sí y no dice

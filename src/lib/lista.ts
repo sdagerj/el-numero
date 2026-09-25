@@ -17,7 +17,7 @@
 // 1. Crear cuenta en mailerlite.com
 // 2. Formularios → Embedded form → crear uno
 // 3. Copiar la dirección del "action" del formulario y pegarla aquí abajo
-// 4. En sus ajustes, poner como redirección: https://elnumero.pages.dev/gracias/
+// 4. En sus ajustes, poner como redirección: https://elnumero.com.co/gracias/
 //
 // Mientras esté vacío, el formulario no se dibuja: es preferible no enseñar una
 // caja de correo que no guarda nada.

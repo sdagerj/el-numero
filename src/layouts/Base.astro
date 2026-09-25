@@ -58,6 +58,20 @@ const tituloCompleto = titulo === 'El Número' ? 'El Número — un número, una
        linea, pero no se anuncia en el pie: a quien no sabe lo que es, abrirlo
        le sale una pantalla de codigo. -->
   <link rel="alternate" type="application/rss+xml" title="El Número" href="/rss.xml" />
+
+  <!-- La direccion oficial es elnumero.com.co. La vieja (elnumero.pages.dev)
+       ya esta en historias, WhatsApps y en Google: no se apaga, se redirige.
+       Va en linea y lo primero del head para que salte antes de pintar nada.
+       Solo esas dos direcciones exactas: las copias de prueba de cada
+       despliegue (xxxx.elnumero.pages.dev) se dejan en paz. -->
+  <script is:inline>
+    (function () {
+      var h = location.hostname;
+      if (h === 'elnumero.pages.dev' || h === 'www.elnumero.com.co') {
+        location.replace('https://elnumero.com.co' + location.pathname + location.search + location.hash);
+      }
+    })();
+  </script>
 </head>
 <body>
   <a href="#contenido" class="saltar">Saltar al contenido</a>
