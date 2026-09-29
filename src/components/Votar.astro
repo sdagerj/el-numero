@@ -22,6 +22,12 @@ const { slug } = Astro.props;
     ))}
   </div>
 
+  <!-- Votar desde el correo: /n/<columna>?voto=100 llega aqui con el numero
+       marcado y este boton visible. El voto NO se registra al abrir el enlace
+       —los filtros de correo abren los enlaces solos y eso inflaria la cuenta—
+       sino al tocar el boton. -->
+  <button type="button" class="v-confirmar" hidden>Confirmar mi voto</button>
+
   <p class="v-gracias" hidden>Gracias. Queda anotado.</p>
   <p class="v-fallo" hidden>No se pudo guardar. Inténtalo más tarde.</p>
 </aside>
@@ -32,6 +38,7 @@ const { slug } = Astro.props;
     const opciones = v.querySelector<HTMLElement>('.v-opciones')!;
     const gracias = v.querySelector<HTMLElement>('.v-gracias')!;
     const fallo = v.querySelector<HTMLElement>('.v-fallo')!;
+    const confirmar = v.querySelector<HTMLButtonElement>('.v-confirmar')!;
     const memoria = `voto:${slug}`;
 
     // Quien ya voto ve el agradecimiento, no los botones otra vez. Se guarda en
@@ -41,12 +48,9 @@ const { slug } = Astro.props;
     try { yaVoto = localStorage.getItem(memoria) !== null; } catch { /* modo privado */ }
     if (yaVoto) { opciones.hidden = true; gracias.hidden = false; }
 
-    opciones.addEventListener('click', async (e) => {
-      const boton = (e.target as HTMLElement).closest<HTMLElement>('.v-op');
-      if (!boton) return;
-      const voto = boton.dataset.voto!;
-
+    async function registrar(voto: string) {
       opciones.hidden = true;
+      confirmar.hidden = true;
       gracias.hidden = false;
       try { localStorage.setItem(memoria, voto); } catch { /* modo privado */ }
 
@@ -64,7 +68,30 @@ const { slug } = Astro.props;
         fallo.hidden = false;
         try { localStorage.removeItem(memoria); } catch { /* modo privado */ }
       }
+    }
+
+    // Un toque en un numero vota de una vez, como siempre.
+    opciones.addEventListener('click', (e) => {
+      const boton = (e.target as HTMLElement).closest<HTMLElement>('.v-op');
+      if (boton) registrar(boton.dataset.voto!);
     });
+
+    // Venir del correo con ?voto=: se marca el numero y se pide confirmar.
+    // El parametro se quita de la barra para que recargar no vuelva a
+    // preseleccionar, y para que el enlace que la persona copie sea limpio.
+    let pre: string | null = null;
+    try {
+      const u = new URL(location.href);
+      pre = u.searchParams.get('voto');
+      if (pre !== null) { u.searchParams.delete('voto'); history.replaceState(null, '', u.pathname + u.search + u.hash); }
+    } catch { /* URL rara: se ignora */ }
+    const botonPre = pre && !yaVoto ? v.querySelector<HTMLElement>(`.v-op[data-voto="${CSS.escape(pre)}"]`) : null;
+    if (botonPre) {
+      botonPre.setAttribute('aria-pressed', 'true');
+      confirmar.hidden = false;
+      confirmar.addEventListener('click', () => registrar(botonPre.dataset.voto!));
+      v.scrollIntoView({ block: 'center' });
+    }
   });
 </script>
 
@@ -98,6 +125,17 @@ const { slug } = Astro.props;
     font-variant-numeric: lining-nums;
   }
   .v-txt { font-size: var(--t-mini); letter-spacing: 0.04em; color: var(--crema-tenue); text-align: center; }
+
+  .v-op[aria-pressed='true'] { border-color: var(--sol); background: rgba(244,218,85,0.08); }
+  .v-confirmar {
+    display: block; margin: 1rem auto 0;
+    padding: 0.9rem 1.8rem;
+    font-family: var(--serif); font-size: 1.1rem; font-weight: 600;
+    color: var(--navy); background: var(--sol);
+    border: none; border-radius: 3px; cursor: pointer;
+  }
+  .v-confirmar:hover { background: var(--crema); }
+  .v-confirmar[hidden] { display: none; }
 
   .v-gracias, .v-fallo {
     margin: 0; text-align: center;

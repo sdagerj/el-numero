@@ -1,0 +1,53 @@
+---
+// La pagina que va en la bio de Instagram. Una sola cosa que hacer, y arriba:
+// en un telefono el formulario tiene que verse sin bajar. Lleva el menu y el
+// pie de siempre —son pequeños y el pie es donde estan las redes— y nada mas
+// que el titulo, la linea y la caja.
+import Base from '../layouts/Base.astro';
+import FormularioLista from '../components/FormularioLista.astro';
+import { hayLista } from '../lib/lista';
+const CORREO = 'sdagerj@gmail.com';
+---
+<Base
+  titulo="Suscríbete"
+  descripcion="Un número. Cada semana. En tu correo. Una cifra verificada, una historia, una lección. Sin ruido."
+>
+  <div class="envoltura suscribete">
+    <h1>Un número.<br />Cada semana.<br />En tu correo.</h1>
+    <p class="linea">Una cifra verificada, una historia, una lección. Sin ruido.</p>
+
+    {hayLista() ? (
+      <FormularioLista id="correo-suscribete" boton="Suscribirme" />
+    ) : (
+      <p class="linea">
+        Escríbeme a <a href={`mailto:${CORREO}?subject=El%20N%C3%BAmero`}>{CORREO}</a>
+      </p>
+    )}
+
+    <p class="honesto">
+      Un correo por columna. Ni uno más. Te sales cuando quieras, con un clic.
+    </p>
+
+    <p class="volver"><a href="/">Leer el número de esta semana →</a></p>
+  </div>
+</Base>
+
+<style>
+  /* Titulo, linea y caja caben en el primer vistazo de un telefono: el menu
+     mide unos 70 px y el titulo arranca enseguida. */
+  .suscribete { padding-top: clamp(1.5rem, 6vw, 3.5rem); }
+  .suscribete h1 {
+    font-size: clamp(2.2rem, 9vw, 3.6rem); line-height: 1.06; margin: 0 0 1rem;
+  }
+  .linea {
+    font-size: var(--t-cuerpo); line-height: 1.55;
+    color: var(--crema-tenue); margin: 0 0 1.75rem;
+  }
+  .honesto {
+    margin: 1.4rem 0 0; font-size: var(--t-mini);
+    color: var(--crema-tenue); line-height: 1.5;
+  }
+  .volver { margin-top: var(--aire); font-size: var(--t-menor); }
+  .volver a { text-decoration: none; }
+  .volver a:hover { text-decoration: underline; }
+</style>

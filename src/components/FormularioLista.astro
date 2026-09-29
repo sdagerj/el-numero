@@ -1,0 +1,90 @@
+---
+// El formulario de MailerLite, solo. Lo usan tres sitios: la caja «Te aviso
+// cuando salga» (Avisame), el recuadro al final de cada columna (Recibelo) y
+// la pagina /suscribete. Un solo formulario, un solo guion: si algun dia
+// cambia la lista, cambia aqui.
+//
+// El id del campo se pasa por prop porque una misma pagina puede llevar dos
+// formularios (columna + pie) y dos <input id="correo"> serian invalidos.
+import { LISTA_ACCION } from '../lib/lista';
+
+interface Props {
+  id?: string;
+  boton?: string;
+  sinLetraChica?: boolean;
+}
+const { id = 'correo', boton = 'Avísame', sinLetraChica = false } = Astro.props;
+---
+<form action={LISTA_ACCION} method="post" target="_blank" data-lista class="formulario-lista">
+  <div class="fila">
+    <label for={id} class="solo-lectores">Tu correo</label>
+    <input
+      id={id} type="email" name="fields[email]" required
+      placeholder="tu@correo.com"
+      autocomplete="email" inputmode="email"
+      autocapitalize="off" autocorrect="off" spellcheck="false"
+    />
+    <button type="submit">{boton}</button>
+  </div>
+  {!sinLetraChica && (
+    <p class="letra-chica">Tu correo es solo para esto. No se comparte ni se vende.</p>
+  )}
+</form>
+
+<script is:inline>
+  // La respuesta de MailerLite no se puede leer desde otro dominio, así que se
+  // manda "a ciegas" (no-cors) y se da por bueno. No es una suposición alegre:
+  // la lista pide confirmación por correo, de modo que el paso siguiente —y la
+  // única promesa que hace /gracias/— es que revises tu bandeja. Si el envío
+  // hubiera fallado, no llega el mensaje y la persona lo nota ahí, no aquí.
+  //
+  // Se engancha una sola vez aunque haya dos formularios en la pagina.
+  if (!window.__listaLista) {
+    window.__listaLista = true;
+    document.querySelectorAll('form[data-lista]').forEach((f) => {
+      f.addEventListener('submit', (e) => {
+        const correo = f.querySelector('input[type=email]');
+        if (!correo || !correo.checkValidity()) return;   // el navegador avisa
+        e.preventDefault();
+        const boton = f.querySelector('button');
+        if (boton) { boton.disabled = true; boton.textContent = 'Un momento…'; }
+        fetch(f.action, { method: 'POST', mode: 'no-cors', body: new FormData(f) })
+          .catch(() => {})
+          .finally(() => { window.location.href = '/gracias/'; });
+      });
+    });
+  }
+</script>
+
+<style>
+  .fila { display: flex; gap: 0.6rem; flex-wrap: wrap; }
+  input[type='email'] {
+    flex: 1 1 14rem; min-width: 0;
+    padding: 0.85rem 1rem;
+    font-family: var(--serif); font-size: 1.1rem;
+    color: var(--navy); background: var(--crema);
+    border: 1px solid transparent; border-radius: 3px;
+  }
+  input[type='email']::placeholder { color: #7d8b95; }
+  button {
+    flex: 0 0 auto;
+    padding: 0.85rem 1.6rem;
+    font-family: var(--serif); font-size: 1.1rem; font-weight: 600;
+    color: var(--navy); background: var(--sol);
+    border: none; border-radius: 3px; cursor: pointer;
+  }
+  button:hover { background: var(--crema); }
+  .letra-chica {
+    margin: 0.9rem 0 0; font-size: var(--t-mini);
+    color: var(--crema-tenue); line-height: 1.5;
+  }
+  /* En un telefono angosto el boton baja debajo del campo y ocupa el ancho.
+     OJO: al apilar en columna, el «14rem» de flex-basis del campo dejaria de
+     ser ancho y pasaria a ser ALTURA — la casilla salia de 220 px de alto.
+     Se le quita la base y se deja que mida lo suyo. */
+  @media (max-width: 26rem) {
+    .fila { flex-direction: column; }
+    input[type='email'] { flex: 0 0 auto; width: 100%; }
+    button { width: 100%; }
+  }
+</style>

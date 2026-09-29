@@ -3,8 +3,8 @@ import { render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import NumeroGigante from '../../components/NumeroGigante.astro';
 import Fuentes from '../../components/Fuentes.astro';
-import Avisame from '../../components/Avisame.astro';
 import Votar from '../../components/Votar.astro';
+import Recibelo from '../../components/Recibelo.astro';
 import { todosLosEditoriales, formatearFecha } from '../../lib/editoriales';
 import { NOMBRE_CANTERA } from '../../content.config';
 
@@ -43,6 +43,7 @@ const { Content } = await render(editorial);
            primero que aparece es la pregunta. Las fuentes son para quien
            quiera ir a comprobar, y esos bajan igual. -->
       <Votar slug={editorial.id} />
+      <Recibelo />
       <Fuentes fuentes={d.fuentes} medio={d.medio} />
     </div>
   </article>
@@ -64,9 +65,6 @@ const { Content } = await render(editorial);
     )}
   </nav>
 
-  <div class="envoltura">
-    <Avisame compacto />
-  </div>
 </Base>
 
 <style>

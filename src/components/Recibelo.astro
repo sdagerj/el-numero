@@ -1,0 +1,27 @@
+---
+// El recuadro de suscripcion al final de cada columna. Va justo despues de
+// la votacion: quien acaba de decir «me fascino» esta a un toque de querer
+// la siguiente.
+import { hayLista } from '../lib/lista';
+import FormularioLista from './FormularioLista.astro';
+---
+{hayLista() && (
+  <aside class="recibelo">
+    <p class="r-titulo">¿Te llegó? Recibe el próximo número en tu correo.</p>
+    <FormularioLista id="correo-columna" boton="Quiero el próximo" />
+  </aside>
+)}
+
+<style>
+  .recibelo {
+    margin-top: var(--aire);
+    padding: 1.75rem 1.5rem;
+    background: var(--navy-hondo);
+    border: 1px solid var(--crema-linea);
+    border-radius: 4px;
+  }
+  .r-titulo {
+    margin: 0 0 1.1rem;
+    font-size: clamp(1.2rem, 4.5vw, 1.45rem); line-height: 1.35;
+  }
+</style>
