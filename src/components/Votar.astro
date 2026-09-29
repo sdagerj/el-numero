@@ -26,7 +26,7 @@ const { slug } = Astro.props;
        marcado y este boton visible. El voto NO se registra al abrir el enlace
        —los filtros de correo abren los enlaces solos y eso inflaria la cuenta—
        sino al tocar el boton. -->
-  <button type="button" class="v-confirmar" hidden>Confirmar mi voto</button>
+  <button type="button" class="v-confirmar" hidden></button>
 
   <p class="v-gracias" hidden>Gracias. Queda anotado.</p>
   <p class="v-fallo" hidden>No se pudo guardar. Inténtalo más tarde.</p>
@@ -88,6 +88,8 @@ const { slug } = Astro.props;
     const botonPre = pre && !yaVoto ? v.querySelector<HTMLElement>(`.v-op[data-voto="${CSS.escape(pre)}"]`) : null;
     if (botonPre) {
       botonPre.setAttribute('aria-pressed', 'true');
+      // El boton contesta la pregunta de arriba con el numero del enlace.
+      confirmar.textContent = `Me quedo con el ${botonPre.querySelector('.v-num')?.textContent?.trim() ?? ''}`;
       confirmar.hidden = false;
       confirmar.addEventListener('click', () => registrar(botonPre.dataset.voto!));
       v.scrollIntoView({ block: 'center' });
