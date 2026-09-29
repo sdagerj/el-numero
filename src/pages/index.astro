@@ -5,6 +5,7 @@ import TarjetaNumero from '../components/TarjetaNumero.astro';
 import Fuentes from '../components/Fuentes.astro';
 import Votar from '../components/Votar.astro';
 import Recibelo from '../components/Recibelo.astro';
+import Escuchala from '../components/Escuchala.astro';
 import { render } from 'astro:content';
 import { todosLosEditoriales, formatearFecha } from '../lib/editoriales';
 import { NOMBRE_CANTERA } from '../content.config';
@@ -30,6 +31,7 @@ const { Content } = actual ? await render(actual) : { Content: null };
         <p class="fecha">
           <time datetime={actual.data.fecha.toISOString()}>{formatearFecha(actual.data.fecha)}</time>
         </p>
+        <Escuchala audio={actual.data.audio} />
       </div>
 
       <div class="envoltura texto">

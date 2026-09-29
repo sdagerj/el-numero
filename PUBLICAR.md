@@ -259,6 +259,27 @@ significa algo muy distinto que 200 lecturas con 60 votos.
 
 ---
 
+## 4d. El audio de una columna
+
+Debajo del título de cada columna puede ir el episodio de Spotify, con el
+texto «Léela o escúchala con mi voz». Sale solo en las columnas que lo tengan.
+
+**Desde la app:** en la tarjeta «Para mi página» hay una casilla **Audio en
+Spotify**. Pegas ahí el enlace del episodio —el que da Spotify en *Compartir →
+Copiar enlace*— y publicas. Ya está.
+
+**A mano en GitHub:** abre el archivo de la columna en
+`src/content/editoriales/` y añade una línea en la cabecera:
+
+```
+audio: https://open.spotify.com/episode/3HUspxeHwX3oy6X4n4ATYM
+```
+
+Si la columna no tiene episodio todavía, no pongas nada: el reproductor no
+aparece. Cuando lo grabes, añades la línea y listo.
+
+---
+
 ## 5. Cambiar cosas del sitio
 
 | Qué quieres cambiar | Dónde está |

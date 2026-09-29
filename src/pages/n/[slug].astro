@@ -5,6 +5,7 @@ import NumeroGigante from '../../components/NumeroGigante.astro';
 import Fuentes from '../../components/Fuentes.astro';
 import Votar from '../../components/Votar.astro';
 import Recibelo from '../../components/Recibelo.astro';
+import Escuchala from '../../components/Escuchala.astro';
 import { todosLosEditoriales, formatearFecha } from '../../lib/editoriales';
 import { NOMBRE_CANTERA } from '../../content.config';
 
@@ -35,6 +36,7 @@ const { Content } = await render(editorial);
       <p class="fecha">
         <time datetime={d.fecha.toISOString()}>{formatearFecha(d.fecha)}</time>
       </p>
+      <Escuchala audio={d.audio} />
     </div>
 
     <div class="envoltura texto">

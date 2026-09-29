@@ -53,6 +53,10 @@ const editoriales = defineCollection({
       url: z.string().url().optional(),
     }).optional(),
 
+    // El episodio de Spotify de esta columna, si lo hay. Se pega el enlace
+    // tal como lo da Spotify al compartir; el reproductor sale bajo el titulo.
+    audio: z.string().optional(),
+
     // Para dejar un editorial escrito sin que salga todavía.
     borrador: z.boolean().default(false),
   }),

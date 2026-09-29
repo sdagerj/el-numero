@@ -1,0 +1,42 @@
+---
+// El episodio de Spotify de una columna, debajo del titulo. Solo se dibuja si
+// la columna trae «audio:» en su cabecera; si no, no ocupa ni un pixel.
+//
+// Acepta el enlace tal como se copia de Spotify:
+//   https://open.spotify.com/episode/3HUsp...?si=abc   (compartir)
+//   https://open.spotify.com/embed/episode/3HUsp...    (incrustar)
+//   spotify:episode:3HUsp...                            (la app de escritorio)
+// y saca de ahi el identificador. Un enlace que no sea de un episodio no se
+// dibuja: es preferible a un reproductor roto bajo el titulo.
+interface Props { audio?: string }
+const { audio } = Astro.props;
+
+function idEpisodio(u: string | undefined): string | null {
+  const t = String(u || '').trim();
+  const m = t.match(/(?:open\.spotify\.com\/(?:embed\/)?episode\/|spotify:episode:)([A-Za-z0-9]{16,32})/);
+  return m ? m[1] : null;
+}
+const id = idEpisodio(audio);
+---
+{id && (
+  <aside class="escuchala">
+    <p class="e-linea">Léela o escúchala con mi voz</p>
+    <iframe
+      src={`https://open.spotify.com/embed/episode/${id}?utm_source=generator&theme=0`}
+      width="100%" height="152" frameborder="0"
+      allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+      loading="lazy"
+      title="Escuchar esta columna en Spotify"
+    ></iframe>
+  </aside>
+)}
+
+<style>
+  .escuchala { margin: 2rem auto 0; max-width: 34rem; }
+  .e-linea {
+    margin: 0 0 0.75rem; text-align: center;
+    font-size: var(--t-mini); letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--crema-tenue);
+  }
+  iframe { display: block; border-radius: 12px; }
+</style>
