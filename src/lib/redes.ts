@@ -17,6 +17,11 @@ export const CORREO = 'sdagerj@gmail.com';
 // mostrar y el enlace no se queda apuntando a una seccion vacia.
 export const YOUTUBE = 'https://www.youtube.com/@StephanieDagerElNumero';
 
+// El PROGRAMA de Spotify, no un episodio: open.spotify.com/show/…
+// (SPOTIFY, arriba, es el capitulo 1 y se usa solo en /enlaces y /el-30).
+// ← Pega aqui el enlace del programa cuando lo tengas.
+export const SPOTIFY_PROGRAMA = '';
+
 export interface Red {
   nombre: string;
   url: string;
@@ -24,10 +29,12 @@ export interface Red {
 
 // Solo las que tienen direccion, en el orden en que se muestran.
 export function redes(): Red[] {
+  // Instagram primero —de ahi llega la gente—, Spotify segundo —la voz—.
   return [
+    { nombre: 'Instagram', url: INSTAGRAM },
+    { nombre: 'Spotify', url: SPOTIFY_PROGRAMA },
     { nombre: 'YouTube', url: YOUTUBE },
     { nombre: 'LinkedIn', url: LINKEDIN },
-    { nombre: 'Instagram', url: INSTAGRAM },
   ].filter((r) => r.url.trim().length > 0);
 }
 
