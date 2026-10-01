@@ -1,5 +1,15 @@
 ---
+import { redes } from '../lib/redes';
 const aqui = Astro.url.pathname;
+const enlacesRedes = redes();
+
+// Los iconos, dibujados aqui para no cargar archivos: tres trazos simples que
+// se reconocen a 22 px. Instagram, YouTube y LinkedIn.
+const ICONOS: Record<string, string> = {
+  Instagram: '<rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>',
+  YouTube: '<path d="M3 8.5c0-1.4 1.1-2.5 2.5-2.5h13c1.4 0 2.5 1.1 2.5 2.5v7c0 1.4-1.1 2.5-2.5 2.5h-13A2.5 2.5 0 0 1 3 15.5z"/><path d="M10 9l5 3-5 3z" fill="currentColor" stroke="none"/>',
+  LinkedIn: '<rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 10v7M8 7v.5M12 17v-4a2 2 0 0 1 4 0v4M12 10v7"/>',
+};
 const activo = (r: string) => aqui === r || (r !== '/' && aqui.startsWith(r));
 const enlaces = [
   { url: '/', texto: 'Esta semana' },
@@ -15,6 +25,15 @@ const enlaces = [
       <img src="/marca/icono-N_para-fondo-oscuro.svg" alt="" width="34" height="34" />
       <span>El Número</span>
     </a>
+    {enlacesRedes.length > 0 && (
+      <nav class="redes-arriba" aria-label="Redes sociales">
+        {enlacesRedes.map((r) => (
+          <a href={r.url} rel="noopener" aria-label={r.nombre} title={r.nombre}>
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" set:html={ICONOS[r.nombre] ?? ''} />
+          </a>
+        ))}
+      </nav>
+    )}
     <nav aria-label="Principal">
       <ul>
         {enlaces.map((e) => (
@@ -39,6 +58,15 @@ const enlaces = [
     font-size: 1.2rem; font-weight: 600; letter-spacing: 0.01em;
   }
   .marca:hover { color: var(--sol); }
+
+  /* En escritorio: logo · menu · iconos, los iconos al extremo derecho. */
+  .redes-arriba { display: flex; gap: 0.9rem; align-items: center; order: 3; }
+  .cabecera-fila > nav[aria-label='Principal'] { margin-left: auto; }
+  .redes-arriba a {
+    display: inline-flex; padding: 0.3rem; color: var(--crema-tenue);
+    border-radius: 4px;
+  }
+  .redes-arriba a:hover, .redes-arriba a:focus-visible { color: var(--sol); }
   nav ul { display: flex; gap: 1.4rem; list-style: none; margin: 0; padding: 0; flex-wrap: wrap; }
   /* Las cifras de Cormorant son de estilo antiguo por defecto: dentro de
      mayúsculas ("EL 30") se ven descolocadas. */
@@ -52,7 +80,11 @@ const enlaces = [
 
   @media (max-width: 34rem) {
     .cabecera { padding-top: 1rem; }
-    .cabecera-fila { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
+    /* Logo a la izquierda e iconos a la derecha en la primera linea; el menu
+       ocupa la segunda entera. Las redes quedan a la vista sin bajar. */
+    .cabecera-fila { gap: 0.75rem 0; }
+    .redes-arriba { order: 0; margin-left: auto; gap: 0.5rem; }
+    .cabecera-fila > nav[aria-label='Principal'] { flex-basis: 100%; margin-left: 0; }
     .marca { font-size: 1.05rem; }
     nav ul { gap: 0.95rem; }
     nav a { font-size: 0.72rem; letter-spacing: 0.08em; }
