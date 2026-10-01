@@ -4,6 +4,7 @@ titulo: "18 años y nadie te enseñó lo que necesitabas saber"
 fecha: 2026-09-16
 resumen: "Si les damos la responsabilidad de votar, endeudarse y firmar documentos que pueden cambiarles la vida, tenemos la obligación de prepararlos."
 cantera: vida
+audio: "https://open.spotify.com/episode/26m9aOMsluKS0DhKdZsgEL"
 fuentes: []
 ---
 
