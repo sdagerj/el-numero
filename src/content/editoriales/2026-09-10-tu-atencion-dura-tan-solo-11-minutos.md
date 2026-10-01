@@ -4,6 +4,7 @@ titulo: "Tu atención dura tan solo 11 minutos"
 fecha: 2026-09-10
 resumen: "Tu atención dura tan solo 11 minutos."
 cantera: vida
+audio: "https://open.spotify.com/episode/0ybxG3OWoRoQH4baGPEqLY"
 fuentes:
   - nombre: "Mark, González & Harris (2005), No Task Left Behind? — PDF UC Irvine"
   - nombre: "González & Mark (2004), Constant, Constant, Multi-tasking Craziness — PDF UC Irvine"
