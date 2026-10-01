@@ -4,6 +4,7 @@ titulo: "El poder que no se presenta"
 fecha: 2026-09-01
 resumen: "Los Medici lo sabían. Su fuerza no estaba en lo que mostraban, sino en lo que podían permitirse no mostrar"
 cantera: vida
+audio: "https://open.spotify.com/episode/2IDjxBQpXNArSyt2IhbCKd"
 fuentes: []
 medio:
   nombre: "El Universal"
