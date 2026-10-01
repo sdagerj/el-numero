@@ -20,7 +20,7 @@ export const YOUTUBE = 'https://www.youtube.com/@StephanieDagerElNumero';
 // El PROGRAMA de Spotify, no un episodio: open.spotify.com/show/…
 // (SPOTIFY, arriba, es el capitulo 1 y se usa solo en /enlaces y /el-30).
 // ← Pega aqui el enlace del programa cuando lo tengas.
-export const SPOTIFY_PROGRAMA = '';
+export const SPOTIFY_PROGRAMA = 'https://open.spotify.com/show/1cM7MD0czH4p7hacf6KMG9';
 
 export interface Red {
   nombre: string;
