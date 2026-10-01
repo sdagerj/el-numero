@@ -4,6 +4,7 @@ titulo: "La nueva revolución"
 fecha: 2026-08-26
 resumen: "Todos hablan de inteligencia artificial. Dos de cada tres dólares de capital de riesgo en el mundo van a inteligencia artificial"
 cantera: mercados
+audio: "https://open.spotify.com/episode/2rlEDoXL9oc9pNO5dVWs8K"
 fuentes: []
 medio:
   nombre: "El Universal"
