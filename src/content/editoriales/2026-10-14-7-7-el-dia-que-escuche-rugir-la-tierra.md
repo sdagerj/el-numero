@@ -5,7 +5,7 @@ fecha: 2026-10-14
 resumen: "Las réplicas son un recuerdo inmediato de este intenso acontecimiento, es como ver una película en fast forward cada vez que se te mueve el piso, cama y ventanas"
 cantera: vida
 fuentes: []
-audio: "https://open.spotify.com/episode/7igjpplunNjafqyGoy041B?si=3tTxhvG6SzCQR75H3ywBQg"
+audio: "https://open.spotify.com/episode/5wpBQX51HooedD1HHSv0bf?si=W8NG6wroRUmFcDVtRHR8ew&utm_source=copy-link"
 ---
 
 Estaba terminando de pagar el impuesto de retención cuando escuché un sonido espantoso que salía de la tierra. Miré a mi alrededor y vi que todo se estaba moviendo. Mi hermana Katyna, que estaba a mi lado, me agarró y me gritó: «¡Está temblando!». Mi otra hermana Vane estaba en medio de una llamada en Zoom y le vi en la cara que no entendía lo que pasaba. Creo que ella no escuchaba el sonido de la tierra. Era el 9 de octubre de 2026, 12:56 p. m., en el complejo Buenaventura, en Río Hato, Coclé, Panamá. Estábamos toda mi familia celebrando los 70 de mi papá.
