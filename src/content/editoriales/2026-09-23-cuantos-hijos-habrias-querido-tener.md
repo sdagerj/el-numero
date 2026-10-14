@@ -8,6 +8,9 @@ audio: "https://open.spotify.com/episode/3B783a6jfpvw4qsBxg7Osw"
 fuentes:
   - nombre: "Naciones Unidas, DESA, División de Población. World Population Prospects 2024, vía Banco Mundial, World Development Indicators (SP.DYN.TFRT.IN)."
   - nombre: "DANE, Boletín técnico Estadísticas Vitales, año 2024pr, 26 de marzo de 2025"
+medio:
+  nombre: "El Universal"
+  url: "https://www.eluniversal.com.co/opinion/columna/2026/09/22/cuantos-hijos-habrias-querido-tener/"
 ---
 
 Cuando uno escucha que nuestros abuelos tenían 7, 5 o 13 hermanos nos parece una locura y nos hacemos muchas preguntas: ¿cómo lo lograban? ¿Cómo organizaban las madres la agenda de tantos hijos? ¿Cómo comían? ¿Cómo salían en un carro? ¿Cómo hacían tareas?
