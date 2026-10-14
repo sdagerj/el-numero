@@ -1,0 +1,22 @@
+---
+// «Publicado originalmente en El Universal», justo al terminar el texto y
+// antes de la votacion. Antes iba al final del todo, con las fuentes, y en
+// letra pequena: quien no bajaba hasta alli no se enteraba de que la columna
+// salio en un periodico — y eso es parte de su credencial.
+interface Props { medio?: { nombre: string; url?: string } }
+const { medio } = Astro.props;
+---
+{medio && (
+  <p class="medio">
+    Publicado originalmente en{' '}
+    {medio.url ? <a href={medio.url} rel="noopener">{medio.nombre}</a> : <strong>{medio.nombre}</strong>}
+  </p>
+)}
+
+<style>
+  .medio {
+    margin: 2.5rem 0 0; font-style: italic;
+    font-size: var(--t-cuerpo); line-height: 1.5; color: var(--crema-tenue);
+  }
+  .medio a, .medio strong { color: var(--crema); font-weight: 600; }
+</style>
