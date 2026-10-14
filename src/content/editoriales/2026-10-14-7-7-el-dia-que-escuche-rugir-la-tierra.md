@@ -5,6 +5,9 @@ fecha: 2026-10-14
 resumen: "Las réplicas son un recuerdo inmediato de este intenso acontecimiento, es como ver una película en fast forward cada vez que se te mueve el piso, cama y ventanas"
 cantera: vida
 fuentes: []
+medio:
+  nombre: "El Universal"
+  url: "https://www.eluniversal.com.co/opinion/columna/2026/10/13/77-el-dia-que-escuche-rugir-la-tierra/"
 audio: "https://open.spotify.com/episode/5wpBQX51HooedD1HHSv0bf?si=W8NG6wroRUmFcDVtRHR8ew&utm_source=copy-link"
 ---
 
