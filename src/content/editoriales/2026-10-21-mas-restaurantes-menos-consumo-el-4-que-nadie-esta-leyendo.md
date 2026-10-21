@@ -1,7 +1,7 @@
 ---
 numero: "-4%"
 titulo: "Más restaurantes, menos consumo: el -4% que nadie está leyendo"
-fecha: 2026-09-23
+fecha: 2026-10-21
 resumen: "La caída del sector en un 4% se explica porque la gente está dejando de consumir en cualquier clase de restaurante, y esto se da porque el costo de la vida cada vez está más alto."
 cantera: mercados
 fuentes: []
