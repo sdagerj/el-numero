@@ -139,7 +139,7 @@ const editoriales = (await todosLosEditoriales()).map((e) => ({
 <style>
   .cabeza { padding-top: clamp(1.5rem, 6vw, 3.5rem); }
   .etiqueta {
-    margin: 0 0 0.75rem; font-size: var(--t-mini);
+    margin: 0 0 0.75rem; font-size: var(--t-mini); font-weight: 600;
     letter-spacing: 0.2em; text-transform: uppercase; color: var(--crema-tenue);
   }
   .cabeza h1 { font-size: var(--t-titulo); margin: 0; }
@@ -163,7 +163,7 @@ const editoriales = (await todosLosEditoriales()).map((e) => ({
   .pie-nota { margin-top: 2rem; }
   .enlace-boton {
     background: none; border: none; padding: 0; cursor: pointer;
-    font-family: var(--serif); font-size: var(--t-mini);
+    font-family: var(--serif); font-size: var(--t-mini); font-weight: 600;
     letter-spacing: 0.08em; text-transform: uppercase; color: var(--crema-tenue);
     text-decoration: underline;
   }
@@ -197,8 +197,8 @@ const editoriales = (await todosLosEditoriales()).map((e) => ({
   #salida tbody th a { font-size: var(--t-menor); text-decoration: none; color: var(--crema); }
   #salida tbody th a:hover { color: var(--sol); }
   #salida td .n { display: block; font-size: 1.25rem; font-variant-numeric: lining-nums; }
-  #salida td .pct { display: block; font-size: var(--t-mini); color: var(--crema-tenue); }
+  #salida td .pct { display: block; font-size: var(--t-mini); font-weight: 600; color: var(--crema-tenue); }
   #salida td.total { font-size: 1.25rem; font-weight: 600; font-variant-numeric: lining-nums; }
-  #salida .leyenda { margin-top: 1.5rem; font-size: var(--t-mini); color: var(--crema-tenue); line-height: 1.8; }
+  #salida .leyenda { margin-top: 1.5rem; font-size: var(--t-mini); font-weight: 600; color: var(--crema-tenue); line-height: 1.8; }
   #salida .leyenda strong { color: var(--sol); font-variant-numeric: lining-nums; }
 </style>

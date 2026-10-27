@@ -12,10 +12,12 @@ const { fuentes = [] } = Astro.props;
             <li>
               <div class="f-cuerpo">
                 <span class="f-nombre">{f.nombre}</span>
-                <span class="f-doc">
-                  {f.url ? <a href={f.url} rel="noopener">{f.documento}</a> : f.documento}
-                  <span class="f-anio"> · {f.anio}</span>
-                </span>
+                {(f.documento || f.anio || f.url) && (
+                  <span class="f-doc">
+                    {f.url ? <a href={f.url} rel="noopener">{f.documento || 'Ver la fuente'}</a> : f.documento}
+                    {f.anio && <span class="f-anio">{(f.documento || f.url) ? ' · ' : ''}{f.anio}</span>}
+                  </span>
+                )}
               </div>
             </li>
           ))}
@@ -40,13 +42,14 @@ const { fuentes = [] } = Astro.props;
     counter-increment: f;
     display: grid; grid-template-columns: 1.75rem 1fr; gap: 0.75rem;
     margin-bottom: 1rem; font-size: var(--t-menor); line-height: 1.5;
+    font-style: italic;   /* manual §04: la fuente siempre en cursiva */
   }
   .fuentes li::before {
     content: counter(f); color: var(--sol);
     font-size: 0.9rem; padding-top: 0.15rem;
   }
   .f-cuerpo { min-width: 0; }
-  .f-nombre { display: block; font-weight: 600; }
+  .f-nombre { display: block; font-weight: 500; }
   .f-doc { display: block; color: var(--crema-tenue); }
   .f-anio { white-space: nowrap; }
 </style>

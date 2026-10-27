@@ -75,14 +75,14 @@ const conUso = CANTERAS.filter((c) => todos.some((e) => e.data.cantera === c));
   .cabeza { padding-top: clamp(1.5rem, 5vw, 3rem); margin-bottom: 2rem; }
   .cabeza h1 { font-size: var(--t-titulo); }
   .cuenta {
-    margin: 0.75rem 0 0; font-size: var(--t-mini);
+    margin: 0.75rem 0 0; font-size: var(--t-mini); font-weight: 600;
     letter-spacing: 0.14em; text-transform: uppercase; color: var(--crema-tenue);
   }
 
   .filtros { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-bottom: 2.5rem; }
   .filtro {
     padding: 0.5rem 1.1rem;
-    font-family: var(--serif); font-size: var(--t-mini);
+    font-family: var(--serif); font-size: var(--t-mini); font-weight: 600;
     letter-spacing: 0.1em; text-transform: uppercase;
     color: var(--crema-tenue); background: transparent;
     border: 1px solid var(--crema-linea); border-radius: 999px;
@@ -109,8 +109,8 @@ const conUso = CANTERAS.filter((c) => todos.some((e) => e.data.cantera === c));
   }
   .c-titulo { font-size: 1.15rem; line-height: 1.3; font-weight: 600; flex: 1; }
   .c-pie { display: flex; flex-direction: column; gap: 0.2rem; margin-top: 0.4rem; }
-  .c-cantera { font-size: var(--t-mini); letter-spacing: 0.14em; text-transform: uppercase; color: var(--mint); }
-  .c-fecha { font-size: var(--t-mini); color: var(--crema-tenue); }
+  .c-cantera { font-size: var(--t-mini); font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mint); }
+  .c-fecha { font-size: var(--t-mini); font-weight: 600; color: var(--crema-tenue); }
 
   .sin-nada { margin-top: 2rem; color: var(--crema-tenue); font-size: var(--t-menor); }
 </style>

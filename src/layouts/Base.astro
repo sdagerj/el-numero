@@ -18,7 +18,7 @@ const { titulo, descripcion, imagenOG, tipo = 'website', fecha, sinNav = false, 
 const enlacesRedes = redes();
 const url = new URL(Astro.url.pathname, Astro.site).href;
 const og = new URL(imagenOG ?? '/og-portada.png', Astro.site).href;
-const tituloCompleto = titulo === 'El Número' ? 'El Número — un número, una historia' : `${titulo} · El Número`;
+const tituloCompleto = titulo === 'El Número' ? 'El Número · Un número · una historia' : `${titulo} · El Número`;
 ---
 <!doctype html>
 <html lang="es">
@@ -84,9 +84,9 @@ const tituloCompleto = titulo === 'El Número' ? 'El Número — un número, una
   {!sinNav && (
     <footer class="pie">
       <div class="envoltura">
-        <img src="/marca/icono-N_para-fondo-oscuro.svg" alt="" width="44" height="44" class="pie-icono" />
+        <img src="/marca/icono-N_para-fondo-oscuro.svg" alt="El Número" width="44" height="44" class="pie-icono" />
         <p class="pie-linea">
-          <strong>El Número</strong> · Un número, una historia
+          <strong>El Número</strong> · Un número · una historia
         </p>
         <p class="pie-origen">
           Una evolución de <a href="/el-30/">Yo me voy con el 30</a>
@@ -128,10 +128,10 @@ const tituloCompleto = titulo === 'El Número' ? 'El Número — un número, una
   .pie-linea strong { font-weight: 600; letter-spacing: 0.01em; }
   .pie-origen { margin: 0 0 1.75rem; font-size: var(--t-menor); color: var(--crema-tenue); }
   .pie-enlaces { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; }
-  .pie-enlaces a { font-size: var(--t-mini); letter-spacing: 0.11em; text-transform: uppercase; text-decoration: none; }
+  .pie-enlaces a { font-size: var(--t-mini); font-weight: 600; letter-spacing: 0.11em; text-transform: uppercase; text-decoration: none; }
   .pie-enlaces a:hover { text-decoration: underline; }
 
   .pie-redes { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; margin-top: 1.1rem; }
-  .pie-redes a { font-size: var(--t-mini); letter-spacing: 0.11em; text-transform: uppercase; text-decoration: none; color: var(--crema-tenue); }
+  .pie-redes a { font-size: var(--t-mini); font-weight: 600; letter-spacing: 0.11em; text-transform: uppercase; text-decoration: none; color: var(--crema-tenue); }
   .pie-redes a:hover { color: var(--sol); }
 </style>

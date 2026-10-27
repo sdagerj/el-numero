@@ -42,9 +42,9 @@ function tamanoNumero(numero: string): number {
   return 96;
 }
 
-interface Opciones { numero: string; titulo: string; cantera?: string; }
+interface Opciones { numero: string; titulo: string; cantera?: string; pie?: string; }
 
-export async function generarOG({ numero, titulo, cantera }: Opciones): Promise<Buffer> {
+export async function generarOG({ numero, titulo, cantera, pie = 'El Número · Un número · una historia' }: Opciones): Promise<Buffer> {
   const svg = await satori(
     {
       type: 'div',
@@ -99,7 +99,7 @@ export async function generarOG({ numero, titulo, cantera }: Opciones): Promise<
                 fontSize: '24px', letterSpacing: '5px', textTransform: 'uppercase',
                 color: 'rgba(247,242,230,0.6)', display: 'flex',
               },
-              children: 'El Número · Un número, una historia',
+              children: pie,
             },
           },
         ].filter(Boolean),

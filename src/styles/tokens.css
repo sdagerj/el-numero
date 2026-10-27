@@ -1,6 +1,8 @@
 /* ═══════════════════════════════════════════════════════════════════
    EL NÚMERO — identidad
-   Los colores salen tal cual del LEEME.txt del paquete de logo.
+   Los colores salen tal cual del LEEME.txt del paquete de logo y están
+   documentados en «El Número · Sistema de identidad» (manual v1, octubre 2026),
+   con estos mismos nombres. Canva, Word y MailerLite usan los mismos códigos.
    Si algún día cambia la marca, se cambia AQUÍ y en ningún otro sitio.
    ═══════════════════════════════════════════════════════════════════ */
 
@@ -41,6 +43,12 @@
   --navy-claro:  #1a5a85;   /* bordes y líneas sobre navy */
   --crema-tenue: rgba(247, 242, 230, 0.72);  /* texto secundario sobre navy */
   --crema-linea: rgba(247, 242, 230, 0.18);
+
+  /* Tonos de apoyo del manual (§03). En la web casi no salen: viven aquí para
+     que el nombre y el código sean los mismos que en Canva y en Word. */
+  --teal-medio:  #57a9a0;   /* solo en gráficos y en las colinas */
+  --navy-tenue:  #406a84;   /* texto secundario sobre crema */
+  --arena:       #e6ddc8;   /* líneas finas sobre crema */
 
   /* Tipografía */
   --serif: 'Cormorant Garamond', 'Iowan Old Style', 'Palatino Linotype',

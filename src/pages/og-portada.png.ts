@@ -4,6 +4,6 @@ import { generarOG } from '../lib/og';
 // La imagen por defecto: la que se ve al compartir la portada, el archivo
 // o cualquier página que no sea un editorial concreto.
 export const GET: APIRoute = async () => {
-  const png = await generarOG({ numero: 'N°', titulo: 'Un número, una historia' });
+  const png = await generarOG({ numero: 'N°', titulo: 'Un número · una historia', pie: 'elnumero.com.co' });
   return new Response(png, { headers: { 'Content-Type': 'image/png' } });
 };

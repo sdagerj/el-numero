@@ -19,7 +19,7 @@ const { Content } = actual ? await render(actual) : { Content: null };
 ---
 <Base
   titulo={actual ? actual.data.titulo : 'El Número'}
-  descripcion={actual ? actual.data.resumen : 'Un número, una historia. Cada semana, una cifra abre una historia y deja una lección.'}
+  descripcion={actual ? actual.data.resumen : 'Un número · una historia. Cada semana, una cifra abre una historia y deja una lección.'}
   imagenOG={actual ? `/og/${actual.id}.png` : undefined}
   fecha={actual?.data.fecha}
 >
@@ -51,7 +51,7 @@ const { Content } = actual ? await render(actual) : { Content: null };
       <p class="etiqueta">Próximamente</p>
       <h1>Aquí encontrarás la columna de El&nbsp;Número</h1>
       <p class="explica">
-        Un número, una historia. Cada semana una cifra abre una historia y deja
+        Un número · una historia. Cada semana una cifra abre una historia y deja
         una lección.
       </p>
       <p class="mientras">
@@ -75,7 +75,7 @@ const { Content } = actual ? await render(actual) : { Content: null };
   .portada { padding-top: clamp(1.5rem, 6vw, 3.5rem); }
   .etiqueta {
     text-align: center; margin: 0 0 1.75rem;
-    font-size: var(--t-mini); letter-spacing: 0.2em; text-transform: uppercase;
+    font-size: var(--t-mini); font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase;
     color: var(--crema-tenue);
   }
   .portada h1 {
@@ -86,7 +86,7 @@ const { Content } = actual ? await render(actual) : { Content: null };
   }
   .fecha {
     text-align: center; margin: 1.25rem 0 0;
-    font-size: var(--t-mini); letter-spacing: 0.12em; text-transform: uppercase;
+    font-size: var(--t-mini); font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
     color: var(--crema-tenue);
   }
 
@@ -94,7 +94,7 @@ const { Content } = actual ? await render(actual) : { Content: null };
 
   .anteriores { margin-top: var(--aire); }
   .anteriores h2 {
-    font-size: var(--t-mini); letter-spacing: 0.18em; text-transform: uppercase;
+    font-size: var(--t-mini); font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase;
     color: var(--mint); margin-bottom: 0.5rem;
   }
   .ver-todos { margin: 1.75rem 0 0; font-size: var(--t-menor); }
