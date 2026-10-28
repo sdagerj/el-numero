@@ -1,5 +1,5 @@
 ---
-numero: "16.6%"
+numero: "16,6%"
 titulo: "16,6%  Los Péptidos - Tan solo el 16,6% mantuvo lo que bajó"
 fecha: 2026-10-28
 resumen: "2/3 del peso perdido se recupera al año de suspender el medicamento
