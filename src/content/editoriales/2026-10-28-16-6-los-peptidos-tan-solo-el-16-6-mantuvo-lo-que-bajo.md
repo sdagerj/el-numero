@@ -7,6 +7,9 @@ Solo el 16,6% de quienes la dejaron conservó al menos el 80% del peso perdido"
 cantera: vida
 fuentes:
   - nombre: "SURMOUNT-4 (JAMA, 2024); STEP 1 (2021 y 2022); Eli Lilly, 10-K 2025."
+medio:
+  nombre: "El Universal"
+  url: "https://www.eluniversal.com.co/opinion/columna/2026/10/29/166-los-peptidos-tan-solo-el-166-mantuvo-lo-que-bajo/"
 audio: "https://open.spotify.com/episode/3LcroqOn8JXmE2YF1rVvai?si=wwNAnc0FTmyu5L5V4JUHKA"
 ---
 
